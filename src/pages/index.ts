@@ -1,0 +1,6 @@
+export { default as Homepage } from './Homepage/Homepage'
+export { default as Register } from './Register/Register'
+export { default as Login } from './Login/Login'
+export { default as Hotels } from './Hotels/Hotels'
+export { default as Hotel } from './Hotel/Hotel'
+export { default as ErrorPage } from './ErrorPage/ErrorPage'

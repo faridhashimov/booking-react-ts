@@ -1,0 +1,57 @@
+
+.guestsInfo {
+    position: absolute;
+    top: 70px;
+    box-shadow: 0 2px 16px rgb(0 0 0 / 15%);
+    border-radius: 4px;
+    background-color: #fff;
+    width: 350px;
+    z-index: 999;
+}
+
+.guestdInfoWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.setGuestsInfoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 16px;
+}
+.setGuestsInfoContainer:not(:first-child) {
+    padding-top: 16px;
+    border-top: 1px solid #ededed;
+}
+
+.guestsTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.guestsSetBtn {
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #0071c2;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #0071c2;
+}
+
+.guestsSetBtn:hover {
+    background-color: #f0f7fb;
+}
+.guestsSetBtn:disabled {
+    cursor: not-allowed;
+}
+
+.guestsQt {
+    margin: 0px 18px;
+}

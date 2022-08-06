@@ -1,0 +1,296 @@
+/* Container */
+
+.container {
+    width: 1104px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding: 30px 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 24%;
+}
+
+/* Filters Container */
+
+.filtersContainer {
+    border-radius: 3px;
+    border: 1px solid #c6c6c6;
+}
+
+.filtersWrapper {
+    padding-bottom: 16px;
+}
+
+.filter {
+    padding: 10px 16px 5px;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.filter:last-child {
+    border-bottom: none;
+}
+
+.filterName {
+    font-size: 14px;
+    font-weight: 700;
+    color: #262626;
+    margin-bottom: 10px;
+}
+
+.filterList {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.filterItem svg {
+    margin-right: 7px;
+    font-size: 25px;
+    stroke-width: 0.8px;
+}
+
+.filterItem div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.filterItem div span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #262626;
+}
+.filterItem div span:last-child {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b6b6b;
+}
+
+/* Hotels Container */
+
+.hotelsContainer {
+    width: 74%;
+}
+
+.hotelsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.hotelsHeader {
+    font-size: 24px;
+    font-weight: 700;
+    color: #262626;
+    margin-bottom: 20px;
+}
+
+.hotelsColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    border: 1px solid #c6c6c6;
+}
+
+.hotelImageContainer {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 4px;
+    position: relative;
+    width: 25%;
+}
+
+.hotelImageContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.saveContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.saveContainer svg {
+    transition: all 0.2s ease-in;
+    filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.5));
+}
+
+.saveContainer:hover svg {
+    fill: #302113;
+    transition: all 0.2s ease-in;
+}
+
+/* Hotel Info Container */
+
+.hotelInfoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding-left: 20px;
+}
+
+/* Info Header */
+
+.infoHeader {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.hotelName {
+    width: 78%;
+}
+
+.hotelName h1 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #0071c2;
+}
+
+.hotelName span {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #262626;
+}
+
+.hotelRating {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Hotel Rating */
+
+.hotelRating {
+    display: flex;
+    width: 22%;
+}
+
+.reviews h4 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #262626;
+}
+
+.reviews span {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #6b6b6b;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    background-color: #003580;
+    color: #fff;
+    border-radius: 4px;
+    border-radius: 6px 6px 6px 0;
+}
+
+/* Info Bottom */
+
+.infoBottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomLeft {
+    display: flex;
+    flex-direction: column;
+}
+
+.roomType,
+.bedInfo,
+.additionalInfo {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    color: #262626;
+}
+
+.bedInfo {
+    font-weight: 400;
+}
+
+.meal,
+.cancellation {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    color: #008009;
+}
+
+.additionalInfo {
+    font-weight: 400;
+    color: #008009;
+}
+
+.bottomRight {
+    text-align: right;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.taxes {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b6b6b;
+}
+
+.availibility {
+    padding: 6px 12px 10px;
+    background-color: #0071c2;
+    transition: all 0.2s ease-in;
+    margin-top: 15px;
+    border-radius: 2px;
+}
+
+.availibility a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 20px;
+}
+
+.availibility a svg {
+    margin-left: 10px;
+}
+
+.availibility:hover {
+    background-color: #00487a;
+    transition: all 0.2s ease-in;
+}

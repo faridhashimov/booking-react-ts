@@ -1,0 +1,69 @@
+.container {
+    width: 1104px;
+    margin: 0 auto;
+    padding: 20px 4px 40px;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.cardContainer {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    height: 270px;
+    cursor: pointer;
+}
+
+.cardContainer::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    transition: all 0.2s ease-in;
+}
+.cardContainer:hover::before {
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0) 64%,
+        rgba(0, 0, 0, 0.5219129888283438) 100%
+    );
+    transition: all 0.2s ease-in;
+}
+
+.cardContainer:not(:nth-child(1)):not(:nth-child(2))
+/* .cardContainer:not(:nth-child(2)) */ {
+    width: 354.5px;
+}
+
+.cardImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cardInfo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #fff;
+}
+
+.cardTitle {
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.cardDesc {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    text-shadow: 1px 1px 1px #000;
+}

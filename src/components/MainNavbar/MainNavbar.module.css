@@ -1,0 +1,121 @@
+.root {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    /* margin-bottom: 15px; */
+    background-color: #003580;
+}
+.container {
+    width: 1104px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    text-decoration: none;
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+}
+
+.currencyContainer {
+    height: 48px;
+    width: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease-in;
+}
+
+.currencyContainer:hover {
+    background-color: #1f4e8f;
+    transition: all 0.2s ease-in;
+}
+
+.currency {
+    font-weight: 600;
+    color: #fff;
+}
+
+.langContainer {
+    height: 48px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    margin-left: 8px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease-in;
+}
+
+.langContainer:hover {
+    background-color: #1f4e8f;
+    transition: all 0.2s ease-in;
+}
+
+.langImg {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+.listProperty {
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    border: 1px solid #fff;
+    background-color: transparent;
+    padding: 8px 16px;
+    line-height: 20px;
+    margin-left: 12px;
+    border-radius: 2px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+
+.listProperty:hover {
+    background-color: #1f4e8f;
+    transition: all 0.2s ease-in;
+}
+
+.authBtn {
+    color: #0071c2;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    background-color: #fff;
+    padding: 8px 16px;
+    margin-left: 12px;
+    border-radius: 2px;
+    border: 1px solid #0071c2;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+
+.authBtn:hover {
+    background-color: #f0f7fb;
+    transition: all 0.2s ease-in;
+}

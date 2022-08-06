@@ -1,0 +1,87 @@
+.searchContainer {
+    background-color: #febb02;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.searchWrapper {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formTitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
+
+.inputLabel {
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+}
+
+.inputContainer {
+    margin-bottom: 2px;
+    cursor: pointer;
+
+    position: relative;
+}
+
+.datePick {
+    position: absolute;
+    top: 70px;
+    z-index: 20;
+    box-shadow: 0 2px 16px rgb(0 0 0 / 15%);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.inputWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border: 1.2px solid transparent;
+    border-radius: 2px;
+    overflow: hidden;
+    height: 40px;
+}
+
+.inputWrapper input {
+    padding: 8px 8px 8px 0px;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding: 5px 8px;
+}
+
+
+.searchBtn {
+    padding: 12px;
+    cursor: pointer;
+    background-color: #0071c2;
+    margin-top: 20px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.2s ease-in;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.searchBtn:hover {
+    background-color: #00487a;
+    transition: all 0.2s ease-in;
+}

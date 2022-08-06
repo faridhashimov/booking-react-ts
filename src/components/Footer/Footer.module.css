@@ -1,0 +1,40 @@
+.container {
+    width: 1104px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding: 20px 4px;
+}
+
+.listContainer {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.list {
+    list-style: none;
+    width: 20%;
+}
+
+.listItem {
+    color: #0071c2;
+    font-size: 13px;
+    line-height: 14px;
+    font-weight: 400;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.listItem:hover {
+    color: #bc5b01;
+    transition: all 0.2s ease-in;
+}
+
+.copyright {
+    font-size: 11px;
+    line-height: 20px;
+    font-weight: 400; 
+    text-align: center;
+}

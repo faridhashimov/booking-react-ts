@@ -1,0 +1,52 @@
+.root {
+    margin-top: 64px;
+    background-color: #003580;
+}
+.container {
+    width: 1104px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    height: 64px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 4px 4px 8px;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categoryName {
+    margin-left: 8px;
+}
+
+.btn {
+    border: 1px solid transparent;
+    margin-right: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.btn:hover {
+    background-color: #1f4e8f;
+    transition: all 0.2s ease-in;
+}
+
+.btn.selected {
+    border: 1px solid #fff;
+    background-color: #1f4e8f;
+    transition: all 0.2s ease-in;
+}

@@ -1,0 +1,206 @@
+.container {
+    width: 1104px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+/* Form */
+.searchForm {
+    background-color: #febb02;
+    border: 4px solid #febb02;
+    display: flex;
+    justify-content: stretch;
+    color: #000;
+    border-radius: 4px;
+}
+
+/* Search destination */
+
+.destinationContainer {
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 4px;
+    flex-grow: 3;
+}
+
+.destinationLabel {
+    padding-left: 16px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.destinationInput {
+    padding: 18px 20px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    min-width: 350px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.clearBtn {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    width: 32px;
+}
+
+/* Set date container */
+
+.datePickContainer {
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 4px;
+}
+
+.infoPickContainer {
+    height: 100%;
+    width: 100%;
+    padding-right: 14px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.datePick {
+    position: absolute;
+    top: 70px;
+    z-index: 20;
+    box-shadow: 0 2px 16px rgb(0 0 0 / 15%);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.iconContainer {
+    padding: 0px 16px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Set Guests */
+
+.guestsContainer {
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    /* cursor: pointer; */
+}
+
+.guests {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.adult {
+    margin-right: 8px;
+}
+
+.children {
+    margin: 0px 8px;
+}
+
+.room {
+    margin-left: 8px;
+}
+
+.gusestsToggleIcon {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+.searchBtn {
+    background-color: #0071c2;
+    border: 0;
+    color: #fff;
+    padding: 0px 37.4px;
+    margin-left: 4px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 500;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.searchBtn:hover {
+    background-color: #005999;
+    transition: all 0.2s ease-in;
+}
+
+/* Guests */
+.guestsInfo {
+    position: absolute;
+    top: 70px;
+    box-shadow: 0 2px 16px rgb(0 0 0 / 15%);
+    border-radius: 4px;
+    background-color: #fff;
+    width: 350px;
+    z-index: 999;
+}
+
+.guestdInfoWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.setGuestsInfoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 16px;
+}
+.setGuestsInfoContainer:not(:first-child) {
+    padding-top: 16px;
+    border-top: 1px solid #ededed;
+}
+
+.guestsTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.guestsSetBtn {
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #0071c2;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #0071c2;
+}
+
+.guestsSetBtn:hover {
+    background-color: #f0f7fb;
+}
+.guestsSetBtn:disabled {
+    cursor: not-allowed;
+}
+
+.guestsQt {
+    margin: 0px 18px;
+}

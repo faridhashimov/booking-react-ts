@@ -1,0 +1,72 @@
+.mainContainer {
+    width: 100%;
+    background-color: #00224F;
+}
+
+.container {
+    width: 1104px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding: 50px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.header {
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h3 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 300;
+}
+.header p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #bdbdbd;
+    margin-bottom: 20px;
+}
+
+.subscription {
+    width: 560px;
+}
+
+.subscription input {
+    padding: 10px;
+    width: 375px;
+    color: #bdbdbd;
+    font-weight: 100;
+    border: 0;
+    border-radius: 3px;
+    margin-right: 5px;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.subscription button {
+    color: #fff;
+    border-radius: 3px;
+    border: 0;
+    padding: 10px 45px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28px;
+    background-color: #0071c2;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+.subscription button:hover {
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+}

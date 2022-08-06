@@ -1,0 +1,144 @@
+.root {
+    user-select: none;
+}
+
+.container {
+    width: 1104px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.registerForm,
+.footer {
+    width: 360px;
+    padding: 0px 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.registerForm h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #383838;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.inputContainer label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #262626;
+}
+
+.inputContainer input {
+    font-size: 14px;
+    background: none;
+    border: 1px solid #949494;
+    border-radius: 2px;
+    outline: none;
+    padding: 7px 11px;
+    width: 100%;
+    z-index: 5;
+}
+
+.inputContainer input:focus {
+    border-color: #0071c2;
+    border-width: 2px;
+    padding: 6px 10px;
+}
+
+.inputContainer {
+    position: relative;
+}
+
+.showPwd {
+    position: absolute;
+    top: 25px;
+    right: 0px;
+    width: 40px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #0071c2;
+    border: 1px solid #0071c2;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease-in;
+}
+
+.submitBtn:hover {
+    background-color: #00487a;
+    transition: all 0.2s ease-in;
+}
+
+.redirect {
+    align-self: center;
+    margin-top: 12px;
+    position: relative;
+}
+
+.redirect::before,
+.redirect::after {
+    position: absolute;
+    content: '';
+    height: 0.5px;
+    width: 60px;
+    background-color: #5faae0;
+    top: 12px;
+}
+
+.redirect::before {
+    left: -70px;
+}
+.redirect::after {
+    right: -70px;
+}
+
+.redirect a {
+    font-size: 14px;
+    color: #0071c2;
+    text-decoration: none;
+}
+
+.footer {
+    padding-top: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #383838;
+}
+
+.terms,
+.copyright {
+    padding: 12px 0px;
+}
+
+.terms {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}

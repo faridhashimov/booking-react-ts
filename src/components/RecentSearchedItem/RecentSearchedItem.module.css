@@ -1,0 +1,51 @@
+/* Card */
+.card {
+    display: flex;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 16%);
+    cursor: pointer;
+    margin-right: 16px;
+    width: 355px;
+    padding: 16px;
+}
+
+.cardImageContainer {
+    margin-right: 16px;
+    height: 64px;
+    width: 64px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.cardImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cardTitle {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.guestsInfo {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #6b6b6b;
+}
+
+.cardTitle::selection,
+.guestsInfo::selection {
+    background-color: transparent;
+}
+
