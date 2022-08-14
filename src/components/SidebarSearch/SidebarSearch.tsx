@@ -68,16 +68,17 @@ const SidebarSearch = () => {
                     </div>
                 </div>
                 <div className={style.inputContainer}>
-                    <div
-                        onClick={() => {
-                            setOpenDate(!openDate)
-                            setOpenGuests(false)
-                        }}
-                    >
+                    <div>
                         <span className={style.inputLabel}>
                             Check-in and Check-out date:
                         </span>
-                        <div className={style.inputWrapper}>
+                        <div
+                            onClick={() => {
+                                setOpenDate(!openDate)
+                                setOpenGuests(false)
+                            }}
+                            className={style.inputWrapper}
+                        >
                             <div className={style.iconContainer}>
                                 <FiCalendar />
                             </div>
@@ -107,11 +108,12 @@ const SidebarSearch = () => {
                     )}
                 </div>
                 <div className={style.inputContainer}>
-                    <div onClick={() => setOpenGuests(!openGuests)}>
-                        <span className={style.inputLabel}>
-                            Check-in and Check-out date:
-                        </span>
-                        <div className={style.inputWrapper}>
+                    <div>
+                        <span className={style.inputLabel}>17-night stay:</span>
+                        <div
+                            onClick={() => setOpenGuests(!openGuests)}
+                            className={style.inputWrapper}
+                        >
                             <div className={style.iconContainer}>
                                 <FiUser />
                             </div>

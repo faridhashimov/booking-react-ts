@@ -9,6 +9,7 @@
     padding: 30px 4px;
     display: flex;
     justify-content: space-between;
+    user-select: none;
 }
 
 /* Sidebar */
@@ -166,6 +167,13 @@
     line-height: 28px;
     font-weight: 700;
     color: #0071c2;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.hotelName h1:hover {
+    color: #bc5b01;
+    transition: all 0.2s ease-in;
 }
 
 .hotelName span {

@@ -1,0 +1,118 @@
+.container {
+    width: 1104px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding: 100px 4px;
+}
+
+.detailsContainer {
+    padding: 16px 12px 0px;
+    color: #262626;
+}
+
+/* Header */
+
+.header {
+    width: 100%;
+    padding-bottom: 22px;
+}
+
+.headerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stageContainer span {
+    font-size: 14px;
+    font-weight: 700;
+}
+.stageContainer:first-child span,
+.stageContainer:last-child span {
+    color: #6b6b6b;
+}
+
+.break {
+    height: 1px;
+    background: #e7e7e7;
+    min-width: 16px;
+    width: 300px;
+}
+
+.stageNum {
+    width: 24px;
+    height: 24px;
+    background-color: #0071c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.stageContainer:last-child .stageNum {
+    background-color: #494949;
+}
+
+.infoBody {
+    display: flex;
+}
+
+.bookingInfo {
+    margin-right: 28px;
+}
+
+.mainInfo {
+    padding: 16px;
+}
+
+.bookingDetails {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e7e7e7;
+    padding: 16px;
+}
+
+.bookingDetails h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.datesContainer {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.date {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.date:first-child {
+    padding-right: 16px;
+}
+
+.date:nth-child(2) {
+    padding-left: 16px;
+}
+
+.date span:first-child {
+    font-weight: 500;
+}
+
+.totalStay {
+    margin-bottom: 15px;
+}

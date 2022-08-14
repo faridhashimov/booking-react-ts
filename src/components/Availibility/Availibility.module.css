@@ -1,0 +1,214 @@
+.aContainer {
+    padding: 40px 0px;
+}
+
+.aTitle {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-bottom: 1px solid #5bbaff;
+}
+
+thead {
+    background-color: #4c76b2;
+    color: #fff;
+}
+
+thead tr th {
+    padding: 6px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    border-left: 1px solid #5bbaff;
+}
+
+thead tr th:first-child {
+    width: 310px;
+}
+
+thead tr th:nth-child(1),
+thead tr th:nth-child(4) {
+    text-align: left;
+}
+
+thead tr th:nth-child(2) {
+    width: 65px;
+}
+thead tr th:nth-child(5) {
+    width: 53px;
+}
+
+thead tr th:nth-child(3) {
+    width: 164px;
+    background-color: #003580;
+}
+
+thead tr th:nth-child(4) {
+    width: 246px;
+}
+
+thead tr th:last-child {
+    width: 220px;
+}
+
+/* Body */
+
+tbody tr td {
+    padding: 6px;
+    vertical-align: top;
+}
+
+tbody .sleepsIcons {
+    display: flex;
+}
+
+tbody tr td span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+tbody tr td {
+    border: 1px solid #5bbaff;
+}
+
+tbody tr:first-child td:last-child {
+    border-bottom: none;
+    border-right: none;
+}
+
+tbody tr td:first-child {
+    border-left: none;
+}
+
+tbody tr td select {
+    width: 3.5em;
+}
+
+.roomTypeTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+.roomTypeTitle h4 {
+    font-size: 16px;
+    color: #0071c2;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.roomTypeTitle span {
+    font-size: 14px;
+    color: #262626;
+    display: flex;
+    align-items: center;
+    line-height: 12px;
+}
+
+.roomTypeTitle span svg {
+    margin-left: 10px;
+    font-size: 20px;
+    fill: #262626;
+}
+
+.roomTypePrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+.roomTypePrice h4 {
+    font-size: 16px;
+    color: #333;
+}
+.roomTypePrice span {
+    font-size: 12px;
+    color: #6b6b6b;
+}
+
+.roomReserve {
+    display: flex;
+    flex-direction: column;
+}
+
+.roomReserve a {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #0071c2;
+    transition: all 0.2s ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.roomReserve a:hover {
+    background-color: #00487a;
+    transition: all 0.2s ease-in;
+}
+
+.roomReserve ul {
+    font-size: 14px;
+    color: #262626;
+    margin: 10px 0px 0px 20px;
+}
+
+.roomFacilities {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #e7e7e7;
+}
+
+.roomFacilities span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 12px;
+    color: #262626;
+}
+.roomFacilities span svg {
+    font-size: 15px;
+    margin-right: 5px;
+    color: rgb(0, 128, 9);
+}
+
+.roomConditions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.conditionContainer {
+    color: #008009;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.roomConditions div svg {
+    margin-right: 7px;
+}
+
+.conditionItem {
+    font-size: 12px;
+}
+
+.conditionItem span {
+    font-weight: 700;
+}

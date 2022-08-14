@@ -10,6 +10,7 @@
 .listContainer {
     display: flex;
     margin-bottom: 20px;
+    user-select: none;
 }
 
 .list {
@@ -37,4 +38,5 @@
     line-height: 20px;
     font-weight: 400; 
     text-align: center;
+    user-select: none;
 }

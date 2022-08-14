@@ -1,5 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Homepage, Register, ErrorPage, Login, Hotels, Hotel } from './pages'
+import {
+    Homepage,
+    Register,
+    ErrorPage,
+    Login,
+    Hotels,
+    Hotel,
+    BookingDetails,
+} from './pages'
 
 function App() {
     return (
@@ -10,6 +18,7 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="hotels" element={<Hotels />} />
                 <Route path="hotels/:id" element={<Hotel />} />
+                <Route path="details" element={<BookingDetails />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Router>

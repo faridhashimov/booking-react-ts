@@ -1,0 +1,102 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.questionsMainWrapper {
+    position: relative;
+}
+
+.questions {
+    overflow: hidden;
+}
+
+.questionsWrapper {
+    width: max-content;
+    display: flex;
+    transition: all 0.4s ease-in-out;
+    gap: 16px;
+}
+
+.questionCard {
+    width: 354px;
+    height: 241px;
+    /* margin-right: 16px; */
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #e5e5e5;
+}
+
+.questionInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.question,
+.answer {
+    display: flex;
+    color: #262626;
+}
+
+.question p {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.answer p {
+    font-size: 14px;
+    color: #6b6b6b;
+}
+
+.iconContainer {
+    margin-right: 16px;
+}
+
+.readmoreBtn {
+    border: transparent;
+    background-color: transparent;
+    color: #0071c2;
+    cursor: pointer;
+    margin-top: 7px;
+    font-size: 14px;
+    transition: all 0.2s ease-in;
+}
+
+.readmoreBtn:hover {
+    text-decoration: underline;
+    transition: all 0.2s ease-in;
+}
+
+.answeredOn {
+    font-size: 12px;
+    color: #6b6b6b;
+}
+
+.questionBtnGroup {
+    margin-top: 25px;
+    display: flex;
+}
+
+.questionBtnGroup button {
+    width: 220px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 2px;
+    color: #0071c2;
+    background-color: transparent;
+    border: 1px solid #0071c2;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.questionBtnGroup button:first-child {
+    margin-right: 10px;
+}
+
+.questionBtnGroup button:hover {
+    background-color: #f0f7fb;
+    transition: all 0.2s ease-in;
+}

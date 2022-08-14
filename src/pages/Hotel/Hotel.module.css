@@ -4,7 +4,13 @@
 }
 
 .wrapper {
+    width: 100%;
     padding: 30px 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotelHeader {
     display: flex;
     justify-content: space-between;
 }
@@ -14,7 +20,7 @@
 }
 
 .imagesContainer {
-    width: 74%;
+    width: 74.5%;
 }
 
 .imagesWrapper {
@@ -27,6 +33,18 @@
 .imagesHeader {
     display: flex;
     justify-content: space-between;
+}
+
+.imagesHeaderInfo {
+    margin-bottom: 10px;
+}
+.imagesHeaderInfo p {
+    display: flex;
+}
+.imagesHeaderInfo svg {
+    fill: #0077cc;
+    font-size: 20px;
+    margin-right: 2px;
 }
 
 .imagesHeaderInfo h3 {
@@ -55,12 +73,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .like:hover {
     background-color: #f0f7fb;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .like svg {
@@ -69,13 +87,196 @@
 
 .headerReserve {
     padding: 8px 16px;
-    background-color: #0071C2;
+    background-color: #0071c2;
     border-radius: 2px;
     color: #fff;
     text-decoration: none;
+    transition: all 0.2s ease-in;
 }
 
 .headerReserve:hover {
-    background-color: #00487A;
-    transition: all .2s ease-in;
+    background-color: #00487a;
+    transition: all 0.2s ease-in;
+}
+
+/* Facilities */
+.facility {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.facilityName {
+    width: 150px;
+    text-align: center;
+    margin: 8px 4px;
+    color: #fff;
+    border-radius: 3px;
+    background-color: #0071c2;
+    padding: 4px 0px 7px;
+    font-size: 14px;
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 20%);
+}
+
+/* Hote Info */
+
+.hotelInfo {
+    display: flex;
+    color: #262626;
+    padding: 20px 0px;
+}
+
+.hotelDesc {
+    width: 740px;
+    padding-right: 20px;
+}
+.hotelDesc h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hotelDesc div {
+    display: flex;
+    flex-direction: column;
+}
+
+.hotelDesc div p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.bookContainer {
+    padding: 20px 0px 0px 20px;
+}
+
+.book {
+    width: 300px;
+    padding: 15px;
+    background-color: #ebf3ff;
+}
+
+.book h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.book h4 {
+    margin-bottom: 5px;
+}
+
+.book div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.book div svg {
+    margin-right: 10px;
+}
+
+.book div span {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.reserveBtn {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 3px;
+    padding: 8px 16px;
+    color: #fff;
+    background-color: #0071c2;
+    transition: all 0.2s ease-in;
+}
+
+
+.reserveBtn:hover {
+    background-color: #00487a;
+    transition: all 0.2s ease-in;
+}
+
+/* Reviews */
+
+.reviewsContainer,
+.qnaContainer {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+.reviewsHeader,
+.qnaHeader {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewsHeader h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.reviewScore {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    background-color: #003580;
+    color: #fff;
+    border-radius: 4px;
+    border-radius: 6px 6px 6px 0;
+}
+
+.rateName,
+.reviewCount {
+    font-size: 16px;
+    font-weight: 500;
+    color: #262626;
+}
+
+.reviewCount {
+    color: #6b6b6b;
+    margin-left: 15px;
+}
+
+.reviewCards h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #262626;
+    margin: 25px 0px 10px 0px;
+}
+
+.qnaHeader h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #262626;
+    margin-bottom: 8px;
+}
+
+.qnaContainer {
+    padding-top: 30px;
+}
+.qnaHeader p {
+    font-size: 14px;
+    color: #6b6b6b;
+    margin-bottom: 25px;
+}
+
+.qnaContainer p span {
+    color: #008009;
 }

@@ -1,10 +1,6 @@
 import style from './Footer.module.css'
 
 const Footer = () => {
-    const orderedCount = (str: any) =>
-        Object.entries(
-            [...str].reduce((a, v) => ((a[v] = a[v] + 1 || 1), a), {})
-        )
 
     return (
         <div className={style.container}>

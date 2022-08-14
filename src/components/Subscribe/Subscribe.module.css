@@ -1,6 +1,7 @@
 .mainContainer {
     width: 100%;
     background-color: #00224F;
+    user-select: none;
 }
 
 .container {

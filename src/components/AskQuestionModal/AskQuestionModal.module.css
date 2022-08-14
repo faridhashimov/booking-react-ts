@@ -1,0 +1,105 @@
+.modalBackground {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+   
+}
+
+.modalContainer {
+    height: 388px;
+    width: 528px;
+    position: sticky;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.modalWrapper {
+    padding: 24px;
+    width: 100%;
+    height: 100%;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalTitle {
+    width: 92%;
+}
+
+.iconContainer {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.iconContainer svg {
+    font-size: 20px;
+    fill: #9f9f9f;
+    transition: all 0.2s ease-in;
+}
+
+.iconContainer:hover svg {
+    fill: #000;
+    transition: all 0.2s ease-in;
+}
+
+.modalTitle h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #262626;
+}
+
+.inputCOntainer label,
+.modalFooter {
+    font-size: 14px;
+    color: #262626;
+}
+
+.inputCOntainer span {
+    font-size: 14px;
+    color: #000;
+}
+
+.modalBody textarea {
+    resize: vertical;
+    outline: none;
+    padding: 8px;
+}
+
+.questionSubmitBtn {
+    width: 100%;
+    padding: 8px 16px;
+    margin-top: 25px;
+    background-color: #0071c2;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.modalFooter span {
+    color: #0071c2;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 5px;
+}

@@ -24,7 +24,7 @@
 
 .inputContainer {
     margin-bottom: 2px;
-    cursor: pointer;
+    
 
     position: relative;
 }
@@ -50,6 +50,7 @@
     border-radius: 2px;
     overflow: hidden;
     height: 40px;
+    cursor: pointer;
 }
 
 .inputWrapper input {
