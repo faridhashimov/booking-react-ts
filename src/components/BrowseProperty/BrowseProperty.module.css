@@ -1,19 +1,12 @@
 .container {
     width: 1104px;
     margin: 0 auto;
-    margin-bottom: 32px;
-    position: relative;
-    padding-top: 10px;
-}
-
-.wrapper {
-    position: relative;
 }
 
 .mainWrapper {
     display: flex;
     flex-direction: column;
-    padding: 0px 4px;
+    padding: 10px 4px 30px;
 }
 
 .mainTitle {
@@ -22,6 +15,10 @@
     font-weight: 700;
     user-select: none;
     margin-bottom: 20px;
+}
+
+.wrapper {
+    position: relative;
 }
 
 .mainDesc {
@@ -43,7 +40,6 @@
     width: max-content;
     transition: all 0.3s ease-in-out;
 }
-
 
 /* Card */
 
@@ -80,4 +76,35 @@
     line-height: 20px;
     font-weight: 400;
     color: #6b6b6b;
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+
+    .mainWrapper {
+        padding: 10px 0px 30px;
+    }
+
+    .mainTitle {
+        margin-left: 16px;
+        font-size: 20px;
+    }
+
+    .cardsContainer {
+        overflow-x: auto;
+        padding: 0px 16px;
+    }
+
+    .cardsContainer::-webkit-scrollbar {
+        background-color: transparent;
+    }
+
+    .imageContainer {
+        width: 170px;
+        height: 170px;
+    }
 }

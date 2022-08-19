@@ -94,7 +94,7 @@ tbody tr td select {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .roomTypeTitle h4 {
@@ -123,7 +123,7 @@ tbody tr td select {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .roomTypePrice h4 {
@@ -211,4 +211,32 @@ tbody tr td select {
 
 .conditionItem span {
     font-weight: 700;
+}
+
+@media (max-width: 500px) {
+    .aContainer {
+        padding: 20px 0px;
+    }
+    
+    .aTitle {
+        margin-left: 10px;
+    }
+
+    .tableWrapper {
+        overflow-x: auto;
+        padding: 0px 10px;
+    }
+
+    .tableWrapper::-webkit-scrollbar {
+        background-color: transparent;
+    }
+
+    table {
+        width: max-content;
+        border-bottom: 1px solid #5bbaff;
+    }
+
+    tbody tr td:first-child {
+        border-left: 1px solid #5bbaff;
+    }
 }

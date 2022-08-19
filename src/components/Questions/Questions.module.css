@@ -100,3 +100,26 @@
     background-color: #f0f7fb;
     transition: all 0.2s ease-in;
 }
+
+@media (max-width: 500px) {
+    .questions {
+        overflow-x: auto;
+    }
+
+    .questionsWrapper {
+        padding: 5px 10px;
+    }
+
+    .questions::-webkit-scrollbar {
+        background-color: transparent;
+    }
+
+    .questionCard {
+        box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.12),
+        0 2px 3px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    .questionBtnGroup {
+        display: none;
+    }
+}

@@ -71,3 +71,28 @@
     opacity: 0.8;
     transition: all 0.2s ease-in;
 }
+
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+
+    .subscription {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .subscription input {
+        width: 75%;
+        margin-right: 0px;
+    }
+
+    .subscription button {
+        margin-top: 10px;
+        width: 75%
+    }
+}

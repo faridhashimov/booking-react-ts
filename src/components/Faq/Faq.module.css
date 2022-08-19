@@ -21,7 +21,7 @@
     color: #262626;
 }
 
-.accordeonContainer {
+.accordeonWrapper {
     width: 75%;
     border-color: #ebf3ff #ebf3ff transparent #ebf3ff;
     border-style: solid solid none solid;
@@ -30,6 +30,14 @@
 
 .accordeonItem {
     height: 56px;
+    cursor: pointer;
+    border-bottom: 1px solid #e7e7e7;
+    overflow: hidden;
+    color: #262626;
+}
+
+.maxConntent {
+    height: max-content;
     cursor: pointer;
     border-bottom: 1px solid #e7e7e7;
     overflow: hidden;
@@ -45,7 +53,7 @@
 
 .chevronContainer svg {
     font-size: 20px;
-} 
+}
 
 .accQuestion h3 {
     font-size: 16px;
@@ -56,4 +64,64 @@
     padding: 0px 16px 16px;
     font-size: 14px;
     font-weight: 400;
+}
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .faqContainer {
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    .accordeonWrapper {
+        width: 100%;
+        overflow-x: auto;
+        padding: 0px 10px;
+    }
+
+    .accordeonWrapper::-webkit-scrollbar {
+        background-color: transparent;
+    }
+
+    .accordeonContainer {
+        display: flex;
+        gap: 15px;
+    }
+
+    .faqLeft {
+        width: 100%;
+        background-color: transparent;
+        padding: 20px 10px 10px;
+    }
+
+    .faqLeft h3 {
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .accordeonContainer {
+        width: max-content;
+        display: flex;
+        padding: 5px 1.5px;
+    }
+
+    .accordeonItem {
+        width: 230px;
+        height: 280px;
+        box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.12),
+            0 2px 3px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    .accQuestion {
+        height: max-content;
+    }
+
+    .chevronContainer svg {
+        display: none;
+    }
 }

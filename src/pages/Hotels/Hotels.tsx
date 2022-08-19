@@ -11,6 +11,7 @@ import { useState } from 'react'
 
 const Hotels = () => {
     const [wishlist, setWishlist] = useState<string[]>([])
+    const [showFilters, setShowFilters] = useState<boolean>(false)
 
     const onAddToWishlist = (id: string) => {
         if (wishlist.includes(id)) {
@@ -30,8 +31,27 @@ const Hotels = () => {
                         {/* Search Container */}
                         <SidebarSearch />
                         {/* Filters Container */}
-                        <div className={style.filtersContainer}>
+                        <div
+                            className={
+                                showFilters
+                                    ? `${style.show}`
+                                    : `${style.filtersContainer}`
+                            }
+                        >
                             <div className={style.filtersWrapper}>
+                                <div className={style.filtersHeader}>
+                                    <div onClick={() => setShowFilters(false)}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M13.31 12l6.89-6.89a.93.93 0 1 0-1.31-1.31L12 10.69 5.11 3.8A.93.93 0 0 0 3.8 5.11L10.69 12 3.8 18.89a.93.93 0 0 0 1.31 1.31L12 13.31l6.89 6.89a.93.93 0 1 0 1.31-1.31z"></path>
+                                        </svg>
+                                    </div>
+
+                                    <span>Filters</span>
+                                    <span>Clear</span>
+                                </div>
                                 <div className={style.filter}>
                                     <h4 className={style.filterName}>
                                         Star Rating
@@ -168,6 +188,39 @@ const Hotels = () => {
                     </aside>
                     <section className={style.hotelsContainer}>
                         <div className={style.hotelsWrapper}>
+                            <div
+                                style={{
+                                    display: showFilters ? 'flex' : 'none',
+                                }}
+                                className={style.showFilters}
+                            >
+                                <div className={style.showFilter}>
+                                    <div className={style.iconContainer}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M10.28 15.22a.75.75 0 0 1 0 1.06l-4.5 4.5a.78.78 0 0 1-.24.16.73.73 0 0 1-.58 0 .78.78 0 0 1-.24-.16l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3.75a.75.75 0 0 1 1.5 0v14.69l3.22-3.22a.75.75 0 0 1 1.06 0zm13.5-7.5l-4.5-4.5a.78.78 0 0 0-.28-.16.73.73 0 0 0-.58 0 .78.78 0 0 0-.24.16l-4.5 4.5a.75.75 0 1 0 1.06 1.06L18 5.56v14.69a.75.75 0 0 0 1.5 0V5.56l3.22 3.22a.75.75 0 0 0 1.06 0 .75.75 0 0 0 0-1.06z"></path>
+                                        </svg>
+                                    </div>
+                                    <span>Sort</span>
+                                </div>
+                                <div
+                                    onClick={() => setShowFilters(true)}
+                                    className={style.showFilter}
+                                >
+                                    <div className={style.iconContainer}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M.75 4.5h16.34a3.5 3.5 0 1 0 0-1.5H.75a.75.75 0 0 0 0 1.5zM20.5 1.75a2 2 0 1 1-2 2 2 2 0 0 1 2-2zm2.75 17.75H9.46a3.5 3.5 0 0 0-6.83 0H.75a.75.75 0 0 0 0 1.5h1.88a3.5 3.5 0 0 0 6.83 0h13.79a.75.75 0 0 0 0-1.5zm-17.2 2.75a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM23.25 11h-7.84a3.49 3.49 0 0 0-6.82 0H.75a.75.75 0 0 0 0 1.5h7.84a3.49 3.49 0 0 0 6.82 0h7.84a.75.75 0 0 0 0-1.5zM12 13.75a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <span>Filter</span>
+                                </div>
+                            </div>
+
                             <div className={style.hotelsHeader}>
                                 New York: 423 properties found
                             </div>

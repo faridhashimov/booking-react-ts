@@ -35,3 +35,9 @@
 .arrowRight {
     right: -10px;
 }
+
+@media (max-width: 500px) {
+    .container {
+        display: none;
+    }
+}

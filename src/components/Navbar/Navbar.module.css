@@ -2,6 +2,7 @@
     margin-top: 64px;
     background-color: #003580;
 }
+
 .container {
     width: 1104px;
     margin: 0 auto;
@@ -49,4 +50,24 @@
     border: 1px solid #fff;
     background-color: #1f4e8f;
     transition: all 0.2s ease-in;
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+    .root {
+        margin-top: 0;
+        overflow: auto;
+    }
+    .container {
+        width: max-content;
+    }
+    .wrapper {
+        padding: 4px 16px 8px;
+    }
+
+    .categories {
+        width: max-content;
+    }
+
 }

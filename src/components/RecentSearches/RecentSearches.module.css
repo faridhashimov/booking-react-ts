@@ -1,6 +1,9 @@
 .container {
     width: 1104px;
     margin: 0 auto;
+}
+
+.wrapper {
     padding: 80px 0px 12px 0px;
 }
 
@@ -24,6 +27,32 @@
 .cardsWrapper {
     width: max-content;
     display: flex;
+    gap: 16px;
     padding: 10px 4px;
     transition: all 0.4s ease-in-out;
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+
+    .wrapper {
+        padding: 20px 0px;
+    }
+
+    .title {
+        padding: 0 16px;
+    }
+
+    .cardsContainer {
+        overflow-x: scroll;
+        padding: 0px 10px;
+    }
+    
+    .cardsContainer::-webkit-scrollbar  {
+       background-color: transparent;
+    }
 }

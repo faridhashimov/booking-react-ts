@@ -44,3 +44,17 @@
     width: 100%;
     object-fit: cover;
 }
+
+@media (max-width: 500px) {
+    .imagesGrid {
+        display: flex;
+        width: max-content;
+        overflow-x: auto;
+    }
+
+    .imgContainer {
+        height:276px;
+        width: 414px;
+    }
+    
+}

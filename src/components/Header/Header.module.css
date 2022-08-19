@@ -45,3 +45,24 @@
     position: absolute;
     bottom: -31px;
 }
+
+.mobileSearch {
+    display: none;
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+    .container {
+        display: none;
+    }
+
+    .searchContainer {
+        display: none;
+    }
+
+    .mobileSearch {
+        display: block;
+    }
+    
+}

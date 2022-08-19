@@ -31,10 +31,12 @@
     justify-content: center;
     align-items: center;
 }
+
 .stageContainer span {
     font-size: 14px;
     font-weight: 700;
 }
+
 .stageContainer:first-child span,
 .stageContainer:last-child span {
     color: #6b6b6b;
@@ -70,10 +72,7 @@
 
 .bookingInfo {
     margin-right: 28px;
-}
-
-.mainInfo {
-    padding: 16px;
+    width: 32%;
 }
 
 .bookingDetails {
@@ -81,6 +80,7 @@
     flex-direction: column;
     border: 1px solid #e7e7e7;
     padding: 16px;
+    margin-bottom: 15px;
 }
 
 .bookingDetails h2 {
@@ -115,4 +115,315 @@
 
 .totalStay {
     margin-bottom: 15px;
+    font-size: 14px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.totalStay h4 {
+    font-weight: 500;
+}
+
+.totalStay span {
+    font-weight: 700;
+}
+
+.selectedRoom {
+    font-size: 14px;
+}
+
+.selectedRoom h4 {
+    font-size: 700;
+}
+
+.selectedRoom span {
+    font-size: 400;
+}
+
+/* Price */
+
+.priceDetails {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e7e7e7;
+}
+
+.priceHeader {
+    padding: 16px;
+    background-color: #ebf3ff;
+}
+
+.priceHeaderContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.priceHeaderContainer div h4,
+.priceHeaderContainer span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.priceHeaderContainer div span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b6b6b;
+}
+
+.priceBody {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.priceBody h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.priceBody div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+/* Main info */
+
+.mainInfo {
+    /* padding: 16px; */
+    width: 67%;
+}
+
+.hotelInfoContainer {
+    display: flex;
+    padding: 16px;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 15px;
+}
+
+.hotelImageContainer {
+    height: 160px;
+    width: 160px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-right: 18px;
+}
+
+.hotelImageContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.propertyType span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b6b6b;
+}
+
+.propertyName {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 5px 0px 10px;
+}
+
+.propertyAdress address {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.propertyAdress span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #008009;
+}
+
+.propertyRating {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.ratingBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background-color: #003580;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    border-radius: 4px 4px 4px 0;
+}
+
+.reviewScore {
+    font-weight: 500;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.reviews {
+    font-weight: 400;
+    font-size: 12px;
+    color: #6b6b6b;
+}
+
+/* Good to know */
+
+.goodToKnow {
+    padding: 16px;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 15px;
+}
+
+.goodToKnow h2 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.goodToKnowItem {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.goodToKnowItem p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.goodToKnowItem svg {
+    margin-right: 10px;
+}
+
+/* border: 1px solid #e7e7e7; */
+
+.userDetails {
+    background-color: #ebf3ff;
+    padding: 16px;
+}
+
+.userDetails header {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.headerLeft {
+    display: flex;
+    flex-direction: column;
+}
+
+.headerLeft h2 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.headerLeft div {
+    padding: 5px 10px;
+    background-color: #d2edd5;
+    color: #006607;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 4px;
+}
+
+.fill {
+    font-weight: 700;
+    font-size: 15px;
+    color: #a30000;
+}
+
+.userForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputsContainer {
+    width: 100%;
+    display: flex;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 45%;
+}
+
+.inputContainer:first-child {
+    margin-right: 15px;
+}
+
+.inputContainer label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.inputContainer input {
+    padding: 7px 24px 7px 8px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+}
+
+.inputContainer input:focus {
+    outline: 2px solid #0071c2;
+}
+
+.submitInfo {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.submitInfo a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #0071c2;
+    border: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+.submitInfo a svg {
+    margin-left: 15px;
+    fill: #fff;
+}
+
+.submitInfo a:hover {
+    background-color: #003580;
+    transition: all .2s ease-in;
+}
+
+
+.footer {
+    background-color: #F5F5F5;
+    height: 50px;
+    width: 100%;
+    
+}
+
+.footer div {
+    height: 100%;
+    width: 1104px;
+    margin: 0 auto;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 }

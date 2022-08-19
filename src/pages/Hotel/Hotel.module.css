@@ -38,9 +38,11 @@
 .imagesHeaderInfo {
     margin-bottom: 10px;
 }
+
 .imagesHeaderInfo p {
     display: flex;
 }
+
 .imagesHeaderInfo svg {
     fill: #0077cc;
     font-size: 20px;
@@ -58,7 +60,6 @@
     font-size: 14px;
     font-weight: 400;
     color: #262626;
-    /* margin-bottom: 7px; */
 }
 
 .likeOrReserve {
@@ -100,6 +101,7 @@
 }
 
 /* Facilities */
+
 .facility {
     display: flex;
     justify-content: center;
@@ -127,27 +129,6 @@
     padding: 20px 0px;
 }
 
-.hotelDesc {
-    width: 740px;
-    padding-right: 20px;
-}
-.hotelDesc h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.hotelDesc div {
-    display: flex;
-    flex-direction: column;
-}
-
-.hotelDesc div p {
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-
 .bookContainer {
     padding: 20px 0px 0px 20px;
 }
@@ -173,6 +154,7 @@
     align-items: center;
     margin-bottom: 40px;
 }
+
 .book div svg {
     margin-right: 10px;
 }
@@ -194,7 +176,6 @@
     background-color: #0071c2;
     transition: all 0.2s ease-in;
 }
-
 
 .reserveBtn:hover {
     background-color: #00487a;
@@ -258,7 +239,7 @@
     font-size: 15px;
     font-weight: 700;
     color: #262626;
-    margin: 25px 0px 10px 0px;
+    margin: 10px;
 }
 
 .qnaHeader h2 {
@@ -271,6 +252,7 @@
 .qnaContainer {
     padding-top: 30px;
 }
+
 .qnaHeader p {
     font-size: 14px;
     color: #6b6b6b;
@@ -279,4 +261,138 @@
 
 .qnaContainer p span {
     color: #008009;
+}
+
+.readMore {
+    display: none;
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+
+    .wrapper {
+        padding: 15px 0px 30px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .imagesWrapper {
+        overflow-x: scroll;
+    }
+
+    .imagesContainer {
+        width: 100%;
+    }
+
+    .hotelHeader {
+        overflow: hidden;
+    }
+
+    .facility {
+        flex-wrap: wrap;
+        padding-top: 10px;
+    }
+
+    .facilityName {
+        margin: 4px 4px;
+    }
+
+    .imagesHeader {
+        padding: 0px 10px 10px;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .imagesHeaderInfo h3 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .imagesHeaderInfo p svg {
+        display: none;
+    }
+
+    .headerReserve {
+        display: none;
+    }
+
+    .like {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        padding: 0px;
+        background-color: transparent;
+    }
+
+    .like svg {
+        transform: scale(1.4);
+    }
+
+    .hotelInfo {
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+
+    .reviewsContainer {
+        padding: 10px 0px;
+    }
+
+    .reviewsHeader {
+        padding: 0px 10px;
+    }
+
+    .reviewsHeader h2 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .qnaContainer {
+        padding: 10px 0px;
+    }
+
+    .qnaHeader {
+        padding: 0px 10px;
+    }
+
+    .qnaHeader h2 {
+        font-size: 20px;
+    }
+
+    .qnaHeader p {
+        margin-bottom: 15px;
+    }
+
+    .bookContainer {
+        padding: 20px 0px;
+    }
+
+    .book {
+        width: 100%;
+        text-align: center;
+    }
+
+    .book h3 {
+        display: none;
+    }
+
+    .book div {
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .book div svg {
+        display: none;
+    }
+
+    .imageGridWrapper {
+        overflow-x: auto;
+    }
 }

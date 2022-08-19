@@ -24,7 +24,6 @@
 
 .inputContainer {
     margin-bottom: 2px;
-    
 
     position: relative;
 }
@@ -68,7 +67,6 @@
     padding: 5px 8px;
 }
 
-
 .searchBtn {
     padding: 12px;
     cursor: pointer;
@@ -85,4 +83,12 @@
 .searchBtn:hover {
     background-color: #00487a;
     transition: all 0.2s ease-in;
+}
+
+/* Responsive  */
+
+@media (max-width: 500px) {
+    .searchContainer {
+        width: 100%;
+    }
 }

@@ -36,7 +36,33 @@
 .copyright {
     font-size: 11px;
     line-height: 20px;
-    font-weight: 400; 
+    font-weight: 400;
     text-align: center;
     user-select: none;
+}
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+
+    .wrapper {
+        padding: 20px;
+    }
+
+    .listContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .list {
+        list-style: none;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .listItem {
+        font-size: 10px;
+        margin-bottom: 2px;
+    }
 }

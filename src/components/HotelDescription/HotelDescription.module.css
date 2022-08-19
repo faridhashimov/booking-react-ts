@@ -1,0 +1,47 @@
+.hotelDesc {
+    width: 740px;
+    padding-right: 20px;
+}
+
+.hotelDesc h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hotelDesc div {
+    display: flex;
+    flex-direction: column;
+}
+
+.hotelDesc div p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 500px) {
+    .hotelDesc {
+        width: 100%;
+        padding: 0px;
+    }
+    .hotelDesc h2 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    
+    .hotelDesc div p {
+        margin-bottom: 2px;
+    }
+
+    .readMore {
+        display: block;
+        border: transparent;
+        background-color: transparent;
+        color: #0071c2;
+        font-size: 16px;
+        margin-top: 10px;
+        font-weight: 700;
+    }
+}

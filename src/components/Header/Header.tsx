@@ -1,4 +1,4 @@
-import { MainNavbar, Navbar, Search } from '../../components'
+import { MainNavbar, Navbar, Search, SidebarSearch } from '../../components'
 import style from './Header.module.css'
 
 const Header = () => {
@@ -20,6 +20,9 @@ const Header = () => {
                 <div className={style.wrapper}>
                     <Search />
                 </div>
+            </div>
+            <div className={style.mobileSearch}>
+                <SidebarSearch />
             </div>
         </>
     )

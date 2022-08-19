@@ -1,14 +1,14 @@
 .container {
     width: 1104px;
     margin: 0 auto;
-    padding: 20px 4px 40px;
-    user-select: none;
 }
 
 .wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    padding: 20px 4px 40px;
+    user-select: none;
 }
 
 .cardContainer {
@@ -67,4 +67,21 @@
     line-height: 20px;
     font-weight: 400;
     text-shadow: 1px 1px 1px #000;
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+
+    .wrapper {
+        padding: 20px 16px 40px;
+    }
+
+    .cardContainer {
+        height: 120px;
+        width: 382px !important;
+    }
 }

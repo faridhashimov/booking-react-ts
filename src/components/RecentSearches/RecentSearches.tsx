@@ -9,7 +9,7 @@ const RecentSearches = () => {
 
     return (
         <div className={style.container}>
-            <div>
+            <div className={style.wrapper}>
                 <h1 className={style.title}>Your Recent Searches</h1>
                 <div className={style.mainWrapper}>
                     <Slider

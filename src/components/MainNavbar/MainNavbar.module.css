@@ -3,7 +3,6 @@
     position: fixed;
     z-index: 1000;
     top: 0;
-    /* margin-bottom: 15px; */
     background-color: #003580;
 }
 .container {
@@ -118,4 +117,35 @@
 .authBtn:hover {
     background-color: #f0f7fb;
     transition: all 0.2s ease-in;
+}
+
+/* Responsive */
+
+.mobileLogin {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileLogin svg {
+    font-size: 30px;
+    color: #fff;
+}
+
+@media (max-width: 500px) {
+    .mobileLogin {
+        display: flex;
+    } 
+
+    .root {
+        width: 100%;
+        position: initial;
+    }
+    .container {
+        width: 100%;
+        padding: 8px 16px;
+    }
+    .navContainer {
+        display: none;
+    }
 }

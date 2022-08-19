@@ -2,6 +2,7 @@ import {
     Availibility,
     Faq,
     Footer,
+    HotelDescription,
     ImagesGrid,
     MainNavbar,
     Navbar,
@@ -14,6 +15,26 @@ import { ImLocation } from 'react-icons/im'
 import style from './Hotel.module.css'
 import { FaHeart } from 'react-icons/fa'
 import { faq } from '../../data'
+
+let text = ` This Art-Deco inspired high-rise hotel offers a
+midtown location and 24-hour dining. Times
+Square is less than 0.6 mi from the property and
+Pen Station is 162 m away. The rooms at The New
+Yorker, A Wyndham Hotel are equipped with
+complimentary WiFi and flat-screen TVs. Some
+suites and rooms offer views of the Empire State
+Building or the Hudson River as well. Take
+advantage of the concierge services at The New
+Yorker, A Wyndham Hotel for assistance with
+Broadway tickets, guided tours, restaurant
+reservations are more. A gift shop, business
+center and a fitness center are available too.
+Herald Square with Macy’s flagship store and
+other shopping destinations is 322 m away. This
+is our guests' favorite part of New York,
+according to independent reviews. Couples in
+particular like the location – they rated it 9.3
+for a two-person trip.`
 
 const Hotel = () => {
     return (
@@ -60,7 +81,9 @@ const Hotel = () => {
                                         </a>
                                     </div>
                                 </header>
-                                <ImagesGrid />
+                                <div className={style.imageGridWrapper}>
+                                    <ImagesGrid />
+                                </div>
                             </div>
                         </section>
                     </header>
@@ -90,43 +113,7 @@ const Hotel = () => {
                         </div>
                     </section>
                     <section className={style.hotelInfo}>
-                        <div className={style.hotelDesc}>
-                            <h2>Stay in the heart of New York</h2>
-                            <div>
-                                <p>
-                                    This Art-Deco inspired high-rise hotel
-                                    offers a midtown location and 24-hour
-                                    dining. Times Square is less than 0.6 mi
-                                    from the property and Pen Station is 162 m
-                                    away.
-                                </p>
-                                <p>
-                                    The rooms at The New Yorker, A Wyndham Hotel
-                                    are equipped with complimentary WiFi and
-                                    flat-screen TVs. Some suites and rooms offer
-                                    views of the Empire State Building or the
-                                    Hudson River as well.
-                                </p>
-                                <p>
-                                    Take advantage of the concierge services at
-                                    The New Yorker, A Wyndham Hotel for
-                                    assistance with Broadway tickets, guided
-                                    tours, restaurant reservations are more. A
-                                    gift shop, business center and a fitness
-                                    center are available too.
-                                </p>
-                                <p>
-                                    Herald Square with Macy’s flagship store and
-                                    other shopping destinations is 322 m away.
-                                </p>
-                                <p>
-                                    This is our guests' favorite part of New
-                                    York, according to independent reviews.
-                                    Couples in particular like the location –
-                                    they rated it 9.3 for a two-person trip.
-                                </p>
-                            </div>
-                        </div>
+                        <HotelDescription desc={text} hotel={'New York'} />
                         <div className={style.bookContainer}>
                             <div className={style.book}>
                                 <h3>Property Highlights</h3>
@@ -139,7 +126,10 @@ const Hotel = () => {
                                         of 9.3
                                     </span>
                                 </div>
-                                <a className={style.reserveBtn} href="#availibility">
+                                <a
+                                    className={style.reserveBtn}
+                                    href="#availibility"
+                                >
                                     Reserve
                                 </a>
                             </div>

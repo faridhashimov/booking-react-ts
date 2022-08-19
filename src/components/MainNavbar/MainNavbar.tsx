@@ -1,5 +1,6 @@
 import style from './MainNavbar.module.css'
 import { Link } from 'react-router-dom'
+import { BiUserCircle } from 'react-icons/bi'
 
 const MainNavbar = () => {
     return (
@@ -10,6 +11,9 @@ const MainNavbar = () => {
                         Fredbooking.com
                     </Link>
                 </div>
+                <Link to='/register' className={style.mobileLogin}>
+                    <BiUserCircle className={style.loginUser} />
+                </Link>
                 <div className={style.navContainer}>
                     <div className={style.currencyContainer}>
                         <span className={style.currency}>RUB</span>
