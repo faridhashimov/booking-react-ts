@@ -1,8 +1,13 @@
 import style from './Availibility.module.css'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { IoBedSharp, IoCheckmarkOutline } from 'react-icons/io5'
+import React from 'react'
 
 const Availibility = () => {
+    const onRoomChoosed = (e: string) => {
+        console.log(e)
+    }
+
     return (
         <div id="availibility" className={style.aContainer}>
             <h2 className={style.aTitle}>Availability</h2>
@@ -114,19 +119,26 @@ const Availibility = () => {
                                 </div>
                             </td>
                             <td>
-                                <select name="" id="">
-                                    <option value="">0 </option>
-                                    <option value="">
+                                <select
+                                    onChange={(e) =>
+                                        onRoomChoosed(e.target.value)
+                                    }
+                                    name=""
+                                    id=""
+                                >
+                                    <option value={0}>0 </option>
+                                    <option value={2369}>
                                         1 &nbsp; &nbsp;&nbsp;&nbsp; (US$2369)
                                     </option>
-                                    <option value="">
-                                        2 &nbsp; &nbsp;&nbsp;&nbsp; (US$2369)
+                                    <option value={2 * 2369}>
+                                        2 &nbsp; &nbsp;&nbsp;&nbsp; (US$
+                                        {2 * 2369})
                                     </option>
-                                    <option value="">
-                                        3 &nbsp; &nbsp;&nbsp;&nbsp; (US$2369)
+                                    <option value={3 * 2369}>
+                                        3 &nbsp; &nbsp;&nbsp;&nbsp; (US${3 * 2369})
                                     </option>
-                                    <option value="">
-                                        4 &nbsp; &nbsp;&nbsp;&nbsp; (US$2369)
+                                    <option value={4 * 2369}>
+                                        4 &nbsp; &nbsp;&nbsp;&nbsp; (US${4 * 2369})
                                     </option>
                                 </select>
                             </td>

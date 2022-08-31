@@ -20,11 +20,16 @@
     margin-bottom: 10px;
 }
 
+.readMore {
+    display: none;
+}
+
 @media (max-width: 500px) {
     .hotelDesc {
         width: 100%;
         padding: 0px;
     }
+    
     .hotelDesc h2 {
         font-size: 20px;
         font-weight: 700;

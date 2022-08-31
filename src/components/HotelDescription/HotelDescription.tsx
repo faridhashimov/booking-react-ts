@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './HotelDescription.module.css'
 
 const HotelDescription = ({ desc, hotel }: { desc: string; hotel: string }) => {
     const [expand, setExpand] = useState<boolean>(false)
+
+    useEffect(() => {
+        if(window.innerWidth > 500) {
+            setExpand(true)
+        }
+    }, [])
 
     return (
         <div className={style.hotelDesc}>
