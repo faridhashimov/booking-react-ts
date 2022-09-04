@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import UserModel from '../models/user.model'
 import bcrypt from 'bcryptjs'
 
-// Get all users from db
+// Get all users
 const getAllUsers = async (req: Request, res: Response) => {
     try {
         const users = await UserModel.find({})
@@ -12,7 +12,7 @@ const getAllUsers = async (req: Request, res: Response) => {
     }
 }
 
-// Get single user from db
+// Get single user
 const getUser = async (req: Request, res: Response) => {
     try {
         const user = await UserModel.findById(req.params.userId)

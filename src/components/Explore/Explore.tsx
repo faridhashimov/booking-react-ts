@@ -1,15 +1,35 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Slider } from '../../components'
 import { explore } from '../../data'
 import style from './Explore.module.css'
 
 const Explore = () => {
     const [index, setIndex] = useState<number>(0)
+    const [country, setCountry] = useState<string>('')
+
+    useEffect(() => {
+        const getGeoInfo = async () => {
+            await axios
+                .get('https://ipapi.co/json/')
+                .then((response) => {
+                    let data = response.data
+                    setCountry(data.country_name)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        getGeoInfo()
+    }, [])
+
+    console.log(country)
 
     return (
         <div className={style.container}>
             <div className={style.mainWrapper}>
-                <h1 className={style.mainTitle}>Explore Russia</h1>
+                <h1 className={style.mainTitle}>Explore {country}</h1>
                 <p className={style.mainDesc}>
                     These popular destinations have a lot to offer
                 </p>

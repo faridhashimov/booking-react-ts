@@ -13,6 +13,7 @@ export interface IProperty {
     propertyType: string
     name: string
     description: string
+    country: String
     city: string
     photos: [string]
     cheapestRoom: TCheapestRoom
@@ -29,7 +30,6 @@ export interface IProperty {
 interface IPropertyDocument extends IProperty, Document {
     createdAt: Date
     updatedAt: Date
-    // rooms: Types.Array<IRoom>
 }
 
 const PropertySchema = new Schema<IPropertyDocument>(
@@ -37,6 +37,7 @@ const PropertySchema = new Schema<IPropertyDocument>(
         propertyType: { type: String, required: true },
         name: { type: String, required: true },
         description: { type: String, required: true },
+        country: {type: String, required: true},
         city: { type: String, required: true },
         photos: { type: [String] },
         cheapestRoom: {

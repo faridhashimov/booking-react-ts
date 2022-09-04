@@ -79,6 +79,7 @@ const updateRoom = async (req: Request, res: Response) => {
             {
                 $set: {
                     'rooms.$.roomType': req.body.roomType,
+                    'rooms.$.roomQuantity': req.body.roomQuantity,
                     'rooms.$.bedTypes': req.body.bedTypes,
                     'rooms.$.roomFacilities': req.body.roomFacilities,
                     'rooms.$.sleeps': req.body.sleeps,
@@ -103,4 +104,37 @@ const updateRoom = async (req: Request, res: Response) => {
     }
 }
 
-export { addNewRoom, deleteRoom, updateRoom }
+// Reserve room
+const reserveRoom = async (req: Request, res: Response) => {
+    try {
+        const updatedProperty = await PropertyModel.findOneAndUpdate(
+            { _id: req.params.propertyId, 'rooms._id': req.params.roomId },
+            {
+                $set: {
+                    'rooms.$.roomType': req.body.roomType,
+                    'rooms.$.roomQuantity': req.body.roomQuantity,
+                    'rooms.$.bedTypes': req.body.bedTypes,
+                    'rooms.$.roomFacilities': req.body.roomFacilities,
+                    'rooms.$.sleeps': req.body.sleeps,
+                    'rooms.$.lastPrice': req.body.lastPrice,
+                    'rooms.$.actualPrice': req.body.actualPrice,
+                    'rooms.$.cancellation': req.body.cancellation,
+                    'rooms.$.payment': req.body.payment,
+                    'rooms.$.breakfast': req.body.breakfast,
+                    'rooms.$.maxPeople': req.body.maxPeople,
+                    'rooms.$.unavailableDates': req.body.unavailableDates,
+                    'rooms.$.updatedAt': Date.now(),
+                },
+            },
+            {
+                new: true,
+            }
+        )
+        res.status(201).json(updatedProperty)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
+
+export { addNewRoom, deleteRoom, updateRoom, reserveRoom }

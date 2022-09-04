@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import PropertyModel from '../models/property.model'
 
+// Add new property
 const createProperty = async (req: Request, res: Response) => {
     try {
         const newProperty = await PropertyModel.create(req.body)
@@ -10,6 +11,7 @@ const createProperty = async (req: Request, res: Response) => {
     }
 }
 
+// Get all properties
 const getAllProperties = async (req: Request, res: Response) => {
     try {
         const allProperties = await PropertyModel.find({})
@@ -19,19 +21,21 @@ const getAllProperties = async (req: Request, res: Response) => {
     }
 }
 
+// Get single property
 const getProperty = async (req: Request, res: Response) => {
     try {
-        const property = await PropertyModel.findById(req.params.id)
+        const property = await PropertyModel.findById(req.params.propertyId)
         res.status(201).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
 }
 
+// Update property
 const updateProperty = async (req: Request, res: Response) => {
     try {
         const property = await PropertyModel.findByIdAndUpdate(
-            req.params.id,
+            req.params.propertyId,
             {
                 $set: req.body,
             },
@@ -45,9 +49,10 @@ const updateProperty = async (req: Request, res: Response) => {
     }
 }
 
+// Delete property
 const deleteProperty = async (req: Request, res: Response) => {
     try {
-        await PropertyModel.findByIdAndDelete(req.params.id)
+        await PropertyModel.findByIdAndDelete(req.params.propertyId)
         res.status(201).json('Property has been deleted!')
     } catch (error) {
         res.status(400).json(error)

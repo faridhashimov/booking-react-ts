@@ -1,8 +1,8 @@
 import { model, Document, Schema } from 'mongoose'
 
 export interface IRoom {
-    // propertyId: string
     roomType: string
+    roomQuantity: number
     bedTypes: [string]
     roomFacilities: [string]
     sleeps: number
@@ -11,7 +11,6 @@ export interface IRoom {
     cancellation: string
     payment: string
     breakfast: string
-    // maxPeople: number
     unavailableDates: [Date]
 }
 
@@ -22,8 +21,8 @@ export interface IRoomDocument extends IRoom, Document {
 
 export const RoomSchema = new Schema<IRoomDocument>(
     {
-        // propertyId: { type: String, required: true },
         roomType: { type: String, required: true },
+        roomQuantity: { type: Number, required: true },
         bedTypes: { type: [String], required: true },
         roomFacilities: { type: [String], required: true },
         sleeps: { type: Number, required: true, default: 2 },
@@ -32,7 +31,6 @@ export const RoomSchema = new Schema<IRoomDocument>(
         cancellation: { type: String, required: true },
         payment: { type: String, required: true },
         breakfast: { type: String, required: true },
-        // maxPeople: { type: Number, required: true },
         unavailableDates: { type: [Date] },
     },
     {
