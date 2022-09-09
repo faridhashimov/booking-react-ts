@@ -1,4 +1,3 @@
-import { ReactPortal } from 'react'
 import { createPortal } from 'react-dom'
 
 interface Props {
