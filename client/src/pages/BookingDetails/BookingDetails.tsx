@@ -1,4 +1,4 @@
-import { Footer, MainNavbar } from '../../components'
+import { MainNavbar } from '../../components'
 import style from './BookingDetails.module.css'
 
 const BookingDetails = () => {
