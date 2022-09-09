@@ -2,7 +2,7 @@ import { model, Document, Schema } from 'mongoose'
 import { IReview, ReviewSchema } from './reviews.model'
 import { IRoom, RoomSchema } from './room.model'
 
-type TCheapestRoom = {
+export type TCheapestRoom = {
     roomType: string
     bedType: string
     lastPrice: number
@@ -15,6 +15,7 @@ export interface IProperty {
     description: string
     country: String
     city: string
+    cityPhoto: string
     photos: [string]
     cheapestRoom: TCheapestRoom
     adress: string
@@ -27,18 +28,19 @@ export interface IProperty {
     reviews: IReview[]
 }
 
-interface IPropertyDocument extends IProperty, Document {
+export interface IPropertyDocument extends IProperty, Document {
     createdAt: Date
     updatedAt: Date
 }
 
-const PropertySchema = new Schema<IPropertyDocument>(
+export const PropertySchema = new Schema<IPropertyDocument>(
     {
         propertyType: { type: String, required: true },
         name: { type: String, required: true },
         description: { type: String, required: true },
-        country: {type: String, required: true},
+        country: { type: String, required: true },
         city: { type: String, required: true },
+        cityPhoto: { type: String },
         photos: { type: [String] },
         cheapestRoom: {
             roomType: { type: String },
