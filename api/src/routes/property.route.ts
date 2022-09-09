@@ -3,6 +3,8 @@ import {
     createProperty,
     deleteProperty,
     getAllProperties,
+    getPropertiesByCountry,
+    getPropertiesByCities,
     getProperty,
     updateProperty,
 } from '../controllers/property.controller'
@@ -14,6 +16,9 @@ router
     .route('/')
     .post(verifyTokenAndAdmin, createProperty)
     .get(getAllProperties)
+
+router.get('/country', getPropertiesByCountry)
+router.get('/cities', getPropertiesByCities)
 
 router
     .route('/:propertyId')
