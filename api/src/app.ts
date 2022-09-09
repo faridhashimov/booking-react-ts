@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import dbConfig from './db/dbConfig'
 import authRoute from './routes/auth.route'
 import userRoute from './routes/user.route'
+import cityRoute from './routes/city.route'
 import propertyRoute from './routes/property.route'
 import roomRoute from './routes/room.route'
 import reviewRoute from './routes/review.route'
@@ -22,6 +23,7 @@ app.use(cookieParser())
 
 app.use('/api/auth', authRoute)
 app.use('/api/user', userRoute)
+app.use('/api/city', cityRoute)
 app.use('/api/property', propertyRoute)
 app.use('/api/room', roomRoute)
 app.use('/api/review', reviewRoute)
