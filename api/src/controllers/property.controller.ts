@@ -27,9 +27,26 @@ const createProperty = async (req: Request, res: Response) => {
 
 // Get all properties
 const getAllProperties = async (req: Request, res: Response) => {
+    const { query } = req
+    const city = query.city || '1'
+    const star = query.star || '1'
+    const distance = query.distance || '1'
+    const propertyType = query.propertyType || '1'
+
+    const searchCity = city && city !== '1' ? { city } : {}
+    const searchStar = star && star !== '1' ? { star } : {}
+    const searchDistance = distance && distance !== '1' ? { distance } : {}
+    const searchType =
+        propertyType && propertyType !== '1' ? { propertyType } : {}
+
     try {
-        const allProperties = await PropertyModel.find({})
-        res.status(201).json({ allProperties })
+        const allProperties = await PropertyModel.find({
+            ...searchCity,
+            ...searchStar,
+            ...searchDistance,
+            ...searchType,
+        })
+        res.status(201).json(allProperties)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -63,9 +80,108 @@ const getPropertiesByCountry = async (req: Request, res: Response) => {
                 },
             },
             {
+                $sort: {
+                    totalProperties: -1,
+                },
+            },
+            {
                 $limit: 10,
             },
         ])
+        res.status(201).json(property)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+// Get Property Types
+const getPropertyTypes = async (req: Request, res: Response) => {
+    try {
+        const property = await PropertyModel.aggregate([
+            {
+                $project: { _id: 0, propertyType: 1 },
+            },
+            {
+                $group: {
+                    _id: '$propertyType',
+                    totalProperties: { $sum: 1 },
+                },
+            },
+            {
+                $sort: {
+                    totalProperties: -1,
+                },
+            },
+            {
+                $limit: 10,
+            },
+        ])
+        res.status(201).json(property)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+//Get Properties By Type
+const getPropertiesByType = async (req: Request, res: Response) => {
+    const { cities, type } = req.query
+    const citiesArr = typeof cities === 'string' ? cities.split(',') : []
+    try {
+        const property = await Promise.all(
+            citiesArr?.map((item) => {
+                return PropertyModel.aggregate([
+                    {
+                        $match: { city: item, propertyType: type },
+                    },
+                    {
+                        $project: {
+                            _id: 0,
+                            city: 1,
+                            country: 1,
+                            cityPhoto: 1,
+                        },
+                    },
+                    {
+                        $group: {
+                            _id: '$city',
+                            country: { $first: '$country' },
+                            totalProperties: { $sum: 1 },
+                            cityPhoto: { $first: '$cityPhoto' },
+                        },
+                    },
+                ])
+            })
+        )
+        const mainResponse = property.flatMap((x) => x)
+        res.status(201).json(mainResponse)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
+
+//Get *Selected* Property By Type
+const getSelectedPropertyByType = async (req: Request, res: Response) => {
+    const { city, type } = req.query
+    try {
+        // const property = await PropertyModel.find({city: city, propertyType: type})
+        const property = await PropertyModel.aggregate([
+            {
+                $match: { city: city, propertyType: type },
+            },
+            {
+                $project: {
+                    _id: 1,
+                    city: 1,
+                    name: 1,
+                    country: 1,
+                    photos: { $first: '$photos' },
+                    description: 1,
+                    reviews: '$reviews.rate',
+                },
+            },
+        ])
+
         res.status(201).json(property)
     } catch (error) {
         res.status(400).json(error)
@@ -76,19 +192,32 @@ const getPropertiesByCountry = async (req: Request, res: Response) => {
 const getPropertiesByCities = async (req: Request, res: Response) => {
     const { name } = req.query
     const cityArr = typeof name === 'string' ? name.split(',') : []
-    console.log(cityArr)
     try {
         const property = await Promise.all(
             cityArr?.map((item) => {
-                return PropertyModel.countDocuments({
-                    city: item,
-                })
+                return PropertyModel.aggregate([
+                    {
+                        $match: { city: item },
+                    },
+                    {
+                        $project: {
+                            _id: 0,
+                            city: 1,
+                            cityPhoto: 1,
+                        },
+                    },
+                    {
+                        $group: {
+                            _id: '$city',
+                            totalProperties: { $sum: 1 },
+                            cityPhoto: { $first: '$cityPhoto' },
+                        },
+                    },
+                ])
             })
         )
-        console.log(property)
         res.status(201).json(property)
     } catch (error) {
-        console.log(error)
         res.status(400).json(error)
     }
 }
@@ -129,4 +258,7 @@ export {
     deleteProperty,
     getPropertiesByCountry,
     getPropertiesByCities,
+    getPropertyTypes,
+    getPropertiesByType,
+    getSelectedPropertyByType,
 }

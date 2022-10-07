@@ -1,7 +1,9 @@
 import axios from 'axios'
+import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Slider } from '../../components'
-import { explore } from '../../data'
+import { useAppSelector } from '../../hooks/useSelector.hook'
 import { useGetPopularDestinationsByCountryQuery } from '../../store/fredbookingapi/fredbooking.api'
 import ExploreItemsLoading from '../Skeletons/ExploreItemsLoading'
 import style from './Explore.module.css'
@@ -9,6 +11,9 @@ import style from './Explore.module.css'
 const Explore = () => {
     const [index, setIndex] = useState<number>(0)
     const [country, setCountry] = useState<string>('')
+    const navigate = useNavigate()
+
+    const { recentSearches } = useAppSelector((state) => state.recenSearches)
 
     const { isFetching, isError, data } =
         useGetPopularDestinationsByCountryQuery(country)
@@ -28,6 +33,22 @@ const Explore = () => {
 
         getGeoInfo()
     }, [])
+
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    const checkin = recentSearches[0]?.checkin
+        ? recentSearches[0]?.checkin
+        : format(new Date(), 'eee, MMM d')
+    const checkout = recentSearches[0]?.checkout
+        ? recentSearches[0]?.checkout
+        : format(tomorrow, 'eee, MMM d')
+
+    const onCitySelected = (city: string) => {
+        navigate(
+            `/hotels?city=${city}&checkin=${checkin}&checkout=${checkout}&adults=${2}&children=${0}&room=${1}`
+        )
+    }
 
     return (
         <div className={style.container}>
@@ -60,14 +81,18 @@ const Explore = () => {
                             >
                                 {data?.map(
                                     ({ _id, cityPhoto, totalProperties }) => (
-                                        <div key={_id} className={style.card}>
+                                        <div
+                                            onClick={() => onCitySelected(_id)}
+                                            key={_id}
+                                            className={style.card}
+                                        >
                                             <div
                                                 className={style.imageContainer}
                                             >
                                                 <img
                                                     className={style.image}
                                                     src={cityPhoto}
-                                                    alt=""
+                                                    alt={_id}
                                                 />
                                             </div>
                                             <div className={style.info}>

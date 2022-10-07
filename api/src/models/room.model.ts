@@ -2,9 +2,10 @@ import { model, Document, Schema } from 'mongoose'
 
 export interface IRoom {
     roomType: string
+    // How many room of this type are there in the hotel
     roomQuantity: number
-    bedTypes: [string]
-    roomFacilities: [string]
+    bedTypes: string[]
+    roomFacilities: string[]
     sleeps: number
     lastPrice: number
     actualPrice: number
@@ -29,8 +30,8 @@ export const RoomSchema = new Schema<IRoomDocument>(
         lastPrice: { type: Number, required: true },
         actualPrice: { type: Number, required: true },
         cancellation: { type: String, required: true },
-        payment: { type: String, required: true },
-        breakfast: { type: String, required: true },
+        payment: { type: String },
+        breakfast: { type: String },
         unavailableDates: { type: [Date] },
     },
     {

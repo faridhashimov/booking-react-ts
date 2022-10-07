@@ -7,11 +7,37 @@ import {
 } from '../../components'
 import { FiCheckSquare, FiChevronRight, FiSquare } from 'react-icons/fi'
 import style from './Hotels.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useGetPropertiesQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { IQueryString } from '../../components/SidebarSearch/SidebarSearch'
+import qs from 'qs'
+import { useAppDispatch } from '../../hooks/useAppDispatch.hook'
+import { v4 as uuidv4 } from 'uuid'
+import { IHotels } from '../../models/models'
 
 const Hotels = () => {
     const [wishlist, setWishlist] = useState<string[]>([])
     const [showFilters, setShowFilters] = useState<boolean>(false)
+    const [filterChecked, setFilterChecked] = useState<string[]>([])
+    const location = useLocation()
+    const navigate = useNavigate()
+    const { addToRecentSearches } = useAppDispatch()
+    const { city, checkin, checkout, children, adults, room, star, distance } =
+        qs.parse(location.search.substring(1)) as unknown as IQueryString
+
+    const { isFetching, isError, data } = useGetPropertiesQuery(
+        // &checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&room=${room}
+        `?city=${city}&star=${star ? star : '1'}&distance=${
+            distance ? distance : '1'
+        }`
+    )
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    console.log(distance)
 
     const onAddToWishlist = (id: string) => {
         if (wishlist.includes(id)) {
@@ -20,6 +46,147 @@ const Hotels = () => {
             setWishlist((prev) => [...prev, id])
         }
     }
+
+    console.log(filterChecked)
+
+    type Filters = {
+        star?: [string, number][]
+        cancellation?: [string, number][]
+        meals?: [string, number][]
+        distance?: [string, number][]
+        property?: [string, number][]
+    }
+
+    const [filters, setFilters] = useState<Filters>({
+        star: [],
+        cancellation: [],
+        meals: [],
+        distance: [],
+        property: [],
+    })
+
+    useEffect(() => {
+        data &&
+            setFilters({
+                star: Object.entries(
+                    data
+                        ?.map((item) => item.star)
+                        .reduce((acc: Record<string, number>, value) => {
+                            return {
+                                ...acc,
+                                [value]: (acc[value] || 0) + 1,
+                            }
+                        }, {})!
+                ),
+                cancellation: Object.entries(
+                    data
+                        ?.map((item) => item.cancellationPolicy)
+                        .reduce((acc: Record<string, number>, value) => {
+                            return {
+                                ...acc,
+                                [value]: (acc[value] || 0) + 1,
+                            }
+                        }, {})!
+                ),
+                meals: Object.entries(
+                    data
+                        ?.map((item) => item.meals)
+                        .reduce((acc: Record<string, number>, value) => {
+                            return {
+                                ...acc,
+                                [value]: (acc[value] || 0) + 1,
+                            }
+                        }, {})!
+                ),
+                distance: Object.entries(
+                    data
+                        ?.map((item) => {
+                            return Object.assign({}, item, {
+                                distance:
+                                    +item.distance / 1000 < 1
+                                        ? ['Less than 1 km', +item.distance]
+                                        : +item.distance / 1000 < 3 &&
+                                          +item.distance / 1000 >= 1
+                                        ? ['Less than 3 km', +item.distance]
+                                        : +item.distance / 1000 < 5 &&
+                                          +item.distance / 1000 >= 3
+                                        ? ['Less than 5 km', +item.distance]
+                                        : ['More than 5 km', +item.distance],
+                            })
+                        })
+                        .map((item) => item.distance)
+                        .reduce((acc: Record<string, number>, value) => {
+                            return {
+                                ...acc,
+                                [value]: (acc[value] || 0) + 1,
+                            }
+                        }, {})!
+                ),
+                property: Object.entries(
+                    data
+                        ?.map((item) => item.propertyType)
+                        .reduce((acc: Record<string, number>, value) => {
+                            return {
+                                ...acc,
+                                [value.slice(0, 14)]:
+                                    (acc[value.slice(0, 14)] || 0) + 1,
+                            }
+                        }, {})!
+                ),
+            })
+    }, [data])
+
+    useEffect(() => {
+        data &&
+            addToRecentSearches({
+                id: uuidv4(),
+                city: city,
+                img: data ? data[0].cityPhoto : '',
+                checkin: checkin,
+                checkout: checkout,
+                guests: +adults + +children,
+            })
+    }, [data])
+
+    const nights = new Date(checkout).getDate() - new Date(checkin).getDate()
+    console.log(checkout, checkin)
+
+    const adultsQt = Number(adults)
+    const child = Number(children)
+
+    const onFilterSelected = (filterValue: string, filter: string) => {
+        const queryParams = {
+            city: city,
+            checkin: checkin,
+            checkout: checkout,
+            adults: adults,
+            children: children,
+            room: adults,
+            params: room,
+            star:
+                filter === 'star' &&
+                !filterChecked.find((filter) => filter === filterValue)
+                    ? filterValue
+                    : null,
+            distance:
+                filter === 'distance' &&
+                !filterChecked.find((filter) => filter === filterValue)
+                    ? filterValue
+                    : null,
+        }
+
+        const queryString = qs.stringify(queryParams, { skipNulls: true })
+
+        navigate(`/hotels?${queryString}`)
+        filterChecked.find((filter) => filter === filterValue)
+            ? setFilterChecked(
+                  filterChecked.filter((filter) => filter !== filterValue)
+              )
+            : setFilterChecked((prev) => [...prev, filterValue])
+    }
+
+    console.log(data)
+
     return (
         <>
             <MainNavbar />
@@ -57,27 +224,32 @@ const Hotels = () => {
                                         Star Rating
                                     </h4>
                                     <div className={style.filterList}>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>1 star</span>
-                                                <span>85</span>
+                                        {filters.star?.map((item) => (
+                                            <div
+                                                onClick={() =>
+                                                    onFilterSelected(
+                                                        String(item[0]),
+                                                        'star'
+                                                    )
+                                                }
+                                                key={item[0]}
+                                                className={style.filterItem}
+                                            >
+                                                {filterChecked.find(
+                                                    (element) =>
+                                                        element === item[0]
+                                                ) ? (
+                                                    <FiCheckSquare />
+                                                ) : (
+                                                    <FiSquare />
+                                                )}
+
+                                                <div>
+                                                    <span>{item[0]} stars</span>
+                                                    <span>{item[1]}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiCheckSquare />
-                                            <div>
-                                                <span>1 star</span>
-                                                <span>85</span>
-                                            </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>1 star</span>
-                                                <span>85</span>
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className={style.filter}>
@@ -85,67 +257,98 @@ const Hotels = () => {
                                         Cancellation Policy
                                     </h4>
                                     <div className={style.filterList}>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>Free cancellation</span>
-                                                <span>340</span>
+                                        {filters.cancellation?.map((item) => (
+                                            <div
+                                                onClick={() =>
+                                                    onFilterSelected(
+                                                        String(item[0]),
+                                                        'cancellation'
+                                                    )
+                                                }
+                                                key={item[0]}
+                                                className={style.filterItem}
+                                            >
+                                                {filterChecked.find(
+                                                    (element) =>
+                                                        element === item[0]
+                                                ) ? (
+                                                    <FiCheckSquare />
+                                                ) : (
+                                                    <FiSquare />
+                                                )}
+                                                <div>
+                                                    <span>{item[0]}</span>
+                                                    <span>{item[1]}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiCheckSquare />
-                                            <div>
-                                                <span>No prepayment</span>
-                                                <span>273</span>
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className={style.filter}>
                                     <h4 className={style.filterName}>Meals</h4>
                                     <div className={style.filterList}>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>Breakfast Included</span>
-                                                <span>340</span>
+                                        {filters.meals?.map((item) => (
+                                            <div
+                                                onClick={() =>
+                                                    onFilterSelected(
+                                                        String(item[0]),
+                                                        'meals'
+                                                    )
+                                                }
+                                                key={item[0]}
+                                                className={style.filterItem}
+                                            >
+                                                {filterChecked.find(
+                                                    (element) =>
+                                                        element === item[0]
+                                                ) ? (
+                                                    <FiCheckSquare />
+                                                ) : (
+                                                    <FiSquare />
+                                                )}
+                                                <div>
+                                                    <span>{item[0]}</span>
+                                                    <span>{item[1]}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiCheckSquare />
-                                            <div>
-                                                <span>Kitchen facilities</span>
-                                                <span>273</span>
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className={style.filter}>
                                     <h4 className={style.filterName}>
-                                        Distance from center of the city
+                                        Distance from center of {city}
                                     </h4>
                                     <div className={style.filterList}>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>Less than 1 km</span>
-                                                <span>340</span>
+                                        {filters.distance?.map((item) => (
+                                            <div
+                                                onClick={() =>
+                                                    onFilterSelected(
+                                                        String(
+                                                            item[0].slice(15)
+                                                        ),
+                                                        'distance'
+                                                    )
+                                                }
+                                                key={item[0]}
+                                                className={style.filterItem}
+                                            >
+                                                {filterChecked.find(
+                                                    (element) =>
+                                                        element ===
+                                                        item[0].slice(15)
+                                                ) ? (
+                                                    <FiCheckSquare />
+                                                ) : (
+                                                    <FiSquare />
+                                                )}
+                                                <div>
+                                                    <span>
+                                                        {item[0].slice(0, 14)}
+                                                    </span>
+                                                    <span>{item[1]}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiCheckSquare />
-                                            <div>
-                                                <span>Less than 3 km</span>
-                                                <span>273</span>
-                                            </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiCheckSquare />
-                                            <div>
-                                                <span>Less than 5 km</span>
-                                                <span>273</span>
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className={style.filter}>
@@ -153,34 +356,31 @@ const Hotels = () => {
                                         Property Type
                                     </h4>
                                     <div className={style.filterList}>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>Hotels</span>
-                                                <span>85</span>
+                                        {filters.property?.map((item) => (
+                                            <div
+                                                onClick={() =>
+                                                    onFilterSelected(
+                                                        String(item[0]),
+                                                        'property'
+                                                    )
+                                                }
+                                                key={item[0]}
+                                                className={style.filterItem}
+                                            >
+                                                {filterChecked.find(
+                                                    (element) =>
+                                                        element === item[0]
+                                                ) ? (
+                                                    <FiCheckSquare />
+                                                ) : (
+                                                    <FiSquare />
+                                                )}
+                                                <div>
+                                                    <span>{item[0]}s</span>
+                                                    <span>{item[1]}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiCheckSquare />
-                                            <div>
-                                                <span>Apartments</span>
-                                                <span>85</span>
-                                            </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>Hostels</span>
-                                                <span>85</span>
-                                            </div>
-                                        </div>
-                                        <div className={style.filterItem}>
-                                            <FiSquare />
-                                            <div>
-                                                <span>Motels</span>
-                                                <span>85</span>
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -222,204 +422,221 @@ const Hotels = () => {
                             </div>
 
                             <div className={style.hotelsHeader}>
-                                New York: 423 properties found
+                                {city}: {data?.length} properties found
                             </div>
                             <div className={style.hotelsColumn}>
-                                <div className={style.hotel}>
-                                    <div className={style.hotelImageContainer}>
-                                        <img
-                                            src="https://t-cf.bstatic.com/xdata/images/hotel/square600/207599654.webp?k=cd805bf4a2b3393e6a45bdcb9709b99eeb8316174e8101e12273e2519edd5df8&o=&s=1"
-                                            alt=""
-                                        />
+                                {data?.map((hotel) => (
+                                    <div
+                                        key={hotel._id}
+                                        className={style.hotel}
+                                    >
                                         <div
-                                            onClick={() => onAddToWishlist('1')}
-                                            className={style.saveContainer}
+                                            className={
+                                                style.hotelImageContainer
+                                            }
                                         >
-                                            <svg
-                                                viewBox="0 0 128 128"
-                                                width="1.5em"
-                                                height="1.5em"
-                                                fill={
-                                                    wishlist.includes('1')
-                                                        ? 'red'
-                                                        : 'transparent'
+                                            <img
+                                                src={hotel.photos[0]}
+                                                alt={hotel.name}
+                                            />
+                                            <div
+                                                onClick={() =>
+                                                    onAddToWishlist(hotel._id)
                                                 }
-                                                stroke="white"
-                                                strokeWidth={10}
+                                                className={style.saveContainer}
                                             >
-                                                <path d="M64 112a3.6 3.6 0 0 1-2-.5 138.8 138.8 0 0 1-44.2-38c-10-14.4-10.6-26-9.4-33.2a29 29 0 0 1 22.9-23.7c11.9-2.4 24 2.5 32.7 13a33.7 33.7 0 0 1 32.7-13 29 29 0 0 1 22.8 23.7c1.3 7.2.6 18.8-9.3 33.3-9.1 13.1-24 25.9-44.2 37.9a3.6 3.6 0 0 1-2 .5z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className={style.hotelInfoContainer}>
-                                        <div className={style.infoHeader}>
-                                            <div className={style.hotelName}>
-                                                <h1>
-                                                    SpringHill Suites by
-                                                    Marriott New York
-                                                    Manhattan/Times Square South
-                                                </h1>
-                                                <span>0.6 km from center</span>
-                                            </div>
-                                            <div className={style.hotelRating}>
-                                                <div className={style.reviews}>
-                                                    <h4>Very Good</h4>
-                                                    <span>4,575 reviews</span>
-                                                </div>
-                                                <div className={style.rating}>
-                                                    8.0
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={style.infoBottom}>
-                                            <div className={style.bottomLeft}>
-                                                <div className={style.roomType}>
-                                                    King Room
-                                                </div>
-                                                <div className={style.bedInfo}>
-                                                    1 king bed
-                                                </div>
-                                                <div className={style.meal}>
-                                                    Breakfast included
-                                                </div>
-                                                <div
-                                                    className={
-                                                        style.cancellation
+                                                <svg
+                                                    viewBox="0 0 128 128"
+                                                    width="1.5em"
+                                                    height="1.5em"
+                                                    fill={
+                                                        wishlist.includes(
+                                                            hotel._id
+                                                        )
+                                                            ? 'red'
+                                                            : 'transparent'
                                                     }
+                                                    stroke="white"
+                                                    strokeWidth={10}
                                                 >
+                                                    <path d="M64 112a3.6 3.6 0 0 1-2-.5 138.8 138.8 0 0 1-44.2-38c-10-14.4-10.6-26-9.4-33.2a29 29 0 0 1 22.9-23.7c11.9-2.4 24 2.5 32.7 13a33.7 33.7 0 0 1 32.7-13 29 29 0 0 1 22.8 23.7c1.3 7.2.6 18.8-9.3 33.3-9.1 13.1-24 25.9-44.2 37.9a3.6 3.6 0 0 1-2 .5z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div
+                                            className={style.hotelInfoContainer}
+                                        >
+                                            <div className={style.infoHeader}>
+                                                <div
+                                                    className={style.hotelName}
+                                                >
+                                                    <h1>{hotel.name}</h1>
                                                     <span>
-                                                        Free cancellation
+                                                        {+hotel.distance / 1000}
+                                                        &nbsp;km from center
                                                     </span>
                                                 </div>
                                                 <div
                                                     className={
-                                                        style.additionalInfo
+                                                        style.hotelRating
                                                     }
                                                 >
-                                                    <p>
-                                                        You can cancel later, so
-                                                        lock in this great price
-                                                        today!
-                                                    </p>
+                                                    <div
+                                                        className={
+                                                            style.reviews
+                                                        }
+                                                    >
+                                                        <h4>Very Good</h4>
+                                                        <span>
+                                                            4,575 reviews
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className={style.rating}
+                                                    >
+                                                        8.0
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className={style.bottomRight}>
-                                                <span className={style.price}>
-                                                    US$1,529
-                                                </span>
-                                                <div className={style.taxes}>
-                                                    +US$529 taxes and charges
+                                            <div className={style.infoBottom}>
+                                                <div
+                                                    className={style.bottomLeft}
+                                                >
+                                                    <div
+                                                        className={
+                                                            style.roomType
+                                                        }
+                                                    >
+                                                        {
+                                                            hotel.cheapestRoom
+                                                                .roomType
+                                                        }
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            style.bedInfo
+                                                        }
+                                                    >
+                                                        {
+                                                            hotel.cheapestRoom
+                                                                .bedType
+                                                        }
+                                                    </div>
+                                                    <div className={style.meal}>
+                                                        {hotel.meals}
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            style.cancellation
+                                                        }
+                                                    >
+                                                        <span>
+                                                            {
+                                                                hotel.cancellationPolicy
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            style.additionalInfo
+                                                        }
+                                                    >
+                                                        <p>
+                                                            You can cancel
+                                                            later, so lock in
+                                                            this great price
+                                                            today!
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <div
                                                     className={
-                                                        style.availibility
+                                                        style.bottomRight
                                                     }
                                                 >
-                                                    <a href="/">
-                                                        See Availibility
-                                                        <FiChevronRight />
-                                                    </a>
+                                                    <div
+                                                        className={
+                                                            style.stayInfo
+                                                        }
+                                                    >
+                                                        {`${nights} ${
+                                                            nights < 2 &&
+                                                            nights > 0
+                                                                ? 'night'
+                                                                : 'nights'
+                                                        },  ${adultsQt} ${
+                                                            adultsQt < 2 &&
+                                                            adultsQt > 0
+                                                                ? 'adult'
+                                                                : 'adults'
+                                                        } ${
+                                                            child > 0 ? ',' : ''
+                                                        } ${
+                                                            child > 0
+                                                                ? child
+                                                                : ''
+                                                        }
+                                                            ${
+                                                                child < 2 &&
+                                                                child > 0
+                                                                    ? 'child'
+                                                                    : child ===
+                                                                      0
+                                                                    ? ''
+                                                                    : 'children'
+                                                            }`}
+                                                    </div>
+                                                    <div
+                                                        className={style.price}
+                                                    >
+                                                        {hotel.cheapestRoom
+                                                            .lastPrice -
+                                                            hotel.cheapestRoom
+                                                                .actualPrice >
+                                                            0 && (
+                                                            <span
+                                                                className={
+                                                                    style.lastPrice
+                                                                }
+                                                            >
+                                                                US$
+                                                                {hotel
+                                                                    .cheapestRoom
+                                                                    .lastPrice *
+                                                                    nights}
+                                                            </span>
+                                                        )}
+                                                        US$
+                                                        {hotel.cheapestRoom
+                                                            .actualPrice *
+                                                            nights}
+                                                    </div>
+                                                    <div
+                                                        className={style.taxes}
+                                                    >
+                                                        +US$&nbsp;
+                                                        {(
+                                                            hotel.cheapestRoom
+                                                                .actualPrice *
+                                                            0.1
+                                                        ).toFixed(2)}
+                                                        &nbsp;taxes and charges
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            style.availibility
+                                                        }
+                                                    >
+                                                        <a href="/">
+                                                            See Availibility
+                                                            <FiChevronRight />
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className={style.hotel}>
-                                    <div className={style.hotelImageContainer}>
-                                        <img
-                                            src="https://t-cf.bstatic.com/xdata/images/hotel/square600/349913490.webp?k=3f39d6c6e54072cc29e7ec98723a050246ca71721dc28679f32b4c8cf18bf449&o=&s=1"
-                                            alt=""
-                                        />
-                                        <div
-                                            onClick={() => onAddToWishlist('2')}
-                                            className={style.saveContainer}
-                                        >
-                                            <svg
-                                                viewBox="0 0 128 128"
-                                                width="1.5em"
-                                                height="1.5em"
-                                                fill={
-                                                    wishlist.includes('2')
-                                                        ? 'red'
-                                                        : 'transparent'
-                                                }
-                                                stroke="white"
-                                                strokeWidth={10}
-                                            >
-                                                <path d="M64 112a3.6 3.6 0 0 1-2-.5 138.8 138.8 0 0 1-44.2-38c-10-14.4-10.6-26-9.4-33.2a29 29 0 0 1 22.9-23.7c11.9-2.4 24 2.5 32.7 13a33.7 33.7 0 0 1 32.7-13 29 29 0 0 1 22.8 23.7c1.3 7.2.6 18.8-9.3 33.3-9.1 13.1-24 25.9-44.2 37.9a3.6 3.6 0 0 1-2 .5z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className={style.hotelInfoContainer}>
-                                        <div className={style.infoHeader}>
-                                            <div className={style.hotelName}>
-                                                <h1>
-                                                    Courtyard by Marriott New
-                                                    York Manhattan/Central Park
-                                                </h1>
-                                                <span>0.6 km from center</span>
-                                            </div>
-                                            <div className={style.hotelRating}>
-                                                <div className={style.reviews}>
-                                                    <h4>Very Good</h4>
-                                                    <span>4,575 reviews</span>
-                                                </div>
-                                                <div className={style.rating}>
-                                                    8.0
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={style.infoBottom}>
-                                            <div className={style.bottomLeft}>
-                                                <div className={style.roomType}>
-                                                    King Room
-                                                </div>
-                                                <div className={style.bedInfo}>
-                                                    1 king bed
-                                                </div>
-                                                <div className={style.meal}>
-                                                    Breakfast included
-                                                </div>
-                                                <div
-                                                    className={
-                                                        style.cancellation
-                                                    }
-                                                >
-                                                    Free cancellation
-                                                </div>
-                                                <div
-                                                    className={
-                                                        style.additionalInfo
-                                                    }
-                                                >
-                                                    <p>
-                                                        You can cancel later, so
-                                                        lock in this great price
-                                                        today!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div className={style.bottomRight}>
-                                                <span className={style.price}>
-                                                    US$1,529
-                                                </span>
-                                                <div className={style.taxes}>
-                                                    +US$529 taxes and charges
-                                                </div>
-                                                <div
-                                                    className={
-                                                        style.availibility
-                                                    }
-                                                >
-                                                    <a href="/">
-                                                        See Availibility
-                                                        <FiChevronRight />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </section>

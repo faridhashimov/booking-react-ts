@@ -5,18 +5,28 @@ import { FiCalendar, FiSearch, FiUser } from 'react-icons/fi'
 import { IDateRange, IGuests } from '../../types'
 import SetGuests from '../SetGuests/SetGuests'
 import style from './SidebarSearch.module.css'
+import qs from 'qs'
+import { useLocation } from 'react-router-dom'
+
+export interface IQueryString {
+    city: string
+    checkin: Date
+    checkout: Date
+    adults: number
+    room: number
+    children: number
+    star: number
+    distance: number
+}
 
 const SidebarSearch = () => {
-    const [destination, setDestination] = useState<string>('New York')
+    const location = useLocation()
+    const params = qs.parse(
+        location.search.substring(1)
+    ) as unknown as IQueryString
+    const [destination, setDestination] = useState<string>(params.city)
     const [openDate, setOpenDate] = useState(false)
     const [openGuests, setOpenGuests] = useState(false)
-
-    const [guests, setGuests] = useState<IGuests>({
-        adults: 2,
-        children: 0,
-        room: 1,
-    })
-
     const handleOption = (name: keyof typeof guests, operation: string) => {
         setGuests((prev) => {
             return {
@@ -27,13 +37,20 @@ const SidebarSearch = () => {
         })
     }
 
-    const [dates, setDates] = useState<IDateRange[]>([
+    const uDates = [
         {
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: new Date(params.checkin),
+            endDate: new Date(params.checkout),
             key: 'selection',
         },
-    ])
+    ]
+
+    const [guests, setGuests] = useState<IGuests>({
+        adults: params.adults,
+        children: params.children,
+        room: params.room,
+    })
+    const [dates, setDates] = useState<IDateRange[]>(uDates)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -91,7 +108,6 @@ const SidebarSearch = () => {
                                         dates[0].endDate,
                                         'eee, MMM d'
                                     )}`}
-                                    {/* Fri, Aug 5 - Fri, Aug 5 */}
                                 </span>
                             </div>
                         </div>
@@ -123,7 +139,11 @@ const SidebarSearch = () => {
                                         guests.adults < 2 ? 'adult' : 'adults'
                                     }`}
                                 </span>{' '}
-                                · <span>{guests.children} children</span> ·{' '}
+                                ·{' '}
+                                <span>{`${guests.children} ${
+                                    guests.children < 2 ? 'child' : 'children'
+                                }`}</span>{' '}
+                                ·{' '}
                                 <span>{`${guests.room} ${room(
                                     guests.adults +
                                         guests.children +

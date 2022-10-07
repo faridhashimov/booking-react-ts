@@ -7,39 +7,24 @@ const addNewRoom = async (req: Request, res: Response) => {
     try {
         const newRoom = await RoomModel.create(req.body)
         const property = await PropertyModel.findById(req.params.propertyId)
+        if (property?.rooms.find((room) => room.roomType === req.body.roomType))
+            return res.status(400).json('Room already added!')
         property?.rooms.push(newRoom)
         await property?.save()
-        const lowestPrice = await PropertyModel.aggregate([
-            {
-                $unwind: '$rooms',
-            },
-            {
-                $project: {
-                    _id: 0,
-                    'rooms.actualPrice': 1,
-                    'rooms.roomType': 1,
-                    'rooms.bedTypes': 1,
-                    'rooms.lastPrice': 1,
-                },
-            },
-            {
-                $sort: {
-                    'rooms.actualPrice': 1,
-                },
-            },
-            {
-                $limit: 1,
-            },
-        ])
+        const rooms = property?.rooms.map((i) => i.actualPrice)
+        const cheapestPrice = Math.min(...rooms!)
+        const cheapestRoom = property?.rooms.find(
+            (i) => i.actualPrice === cheapestPrice
+        )
         const updatedProperty = await PropertyModel.findByIdAndUpdate(
             { _id: req.params.propertyId },
             {
                 $set: {
                     cheapestRoom: {
-                        roomType: lowestPrice[0].rooms.roomType,
-                        bedType: lowestPrice[0].rooms.bedTypes[0],
-                        lastPrice: lowestPrice[0].rooms.lastPrice,
-                        actualPrice: lowestPrice[0].rooms.actualPrice,
+                        roomType: cheapestRoom?.roomType,
+                        bedType: cheapestRoom?.bedTypes[0],
+                        lastPrice: cheapestRoom?.lastPrice,
+                        actualPrice: cheapestRoom?.actualPrice,
                     },
                 },
             },
@@ -96,6 +81,26 @@ const updateRoom = async (req: Request, res: Response) => {
             {
                 new: true,
             }
+        )
+        const property = await PropertyModel.findById(req.params.propertyId)
+        const rooms = property?.rooms.map((i) => i.actualPrice)
+        const cheapestPrice = Math.min(...rooms!)
+        const cheapestRoom = property?.rooms.find(
+            (i) => i.actualPrice === cheapestPrice
+        )
+        await PropertyModel.findByIdAndUpdate(
+            { _id: req.params.propertyId },
+            {
+                $set: {
+                    cheapestRoom: {
+                        roomType: cheapestRoom?.roomType,
+                        bedType: cheapestRoom?.bedTypes[0],
+                        lastPrice: cheapestRoom?.lastPrice,
+                        actualPrice: cheapestRoom?.actualPrice,
+                    },
+                },
+            },
+            { new: true }
         )
         res.status(201).json(updatedProperty)
     } catch (error) {

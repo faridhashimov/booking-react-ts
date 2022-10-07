@@ -1,10 +1,12 @@
 import { Request, Response } from 'express'
 import PropertyModel from '../models/property.model'
 import ReviewModel from '../models/reviews.model'
+import UserModel from '../models/user.model'
 
 // Add new review to the property
 const addNewReview = async (req: Request, res: Response) => {
     try {
+        const user = await UserModel.findById(req.params.userId)
         const property = await PropertyModel.findById(req.params.propertyId)
         if (property) {
             if (property?.reviews.find((r) => r.userId === req.params.userId)) {
@@ -14,7 +16,12 @@ const addNewReview = async (req: Request, res: Response) => {
                     .json('You are already submitted a review')
             }
         }
-        const newReview = await ReviewModel.create(req.body)
+        const newReview = await ReviewModel.create({
+            userId: req.params.userId,
+            username: user?.name,
+            photo: user?.photo,
+            ...req.body,
+        })
         property?.reviews.push(newReview)
         await property?.save()
         res.status(201).json(property)

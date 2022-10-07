@@ -45,7 +45,7 @@ const Hotel = () => {
                 <div className={style.wrapper}>
                     <header className={style.hotelHeader}>
                         <aside className={style.sidebar}>
-                            <SidebarSearch />
+                            {/* <SidebarSearch /> */}
                         </aside>
                         <section className={style.imagesContainer}>
                             <div className={style.imagesWrapper}>

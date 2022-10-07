@@ -11,19 +11,20 @@ export type TCheapestRoom = {
 
 export interface IProperty {
     propertyType: string
+    star?: number
     name: string
     description: string
     country: String
     city: string
     cityPhoto: string
-    photos: [string]
+    photos: string[]
     cheapestRoom: TCheapestRoom
     adress: string
     distance: number
     cancellationPolicy: string
     meals: string
-    funThingsToDo: [string]
-    accessibility: [string]
+    funThingsToDo: string[]
+    accessibility: string[]
     rooms: IRoom[]
     reviews: IReview[]
 }
@@ -36,6 +37,7 @@ export interface IPropertyDocument extends IProperty, Document {
 export const PropertySchema = new Schema<IPropertyDocument>(
     {
         propertyType: { type: String, required: true },
+        star: { type: Number, min: 1, max: 5 },
         name: { type: String, required: true },
         description: { type: String, required: true },
         country: { type: String, required: true },
@@ -51,7 +53,7 @@ export const PropertySchema = new Schema<IPropertyDocument>(
         adress: { type: String, required: true },
         distance: { type: Number, required: true },
         cancellationPolicy: { type: String, required: true },
-        meals: { type: String, required: true },
+        meals: { type: String },
         funThingsToDo: { type: [String] },
         accessibility: { type: [String] },
         rooms: [RoomSchema],

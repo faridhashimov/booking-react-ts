@@ -1,0 +1,38 @@
+
+/* Main styling */
+.mainContainer {
+    padding: 30px 0px;
+    min-height: 360px;
+    overflow: hidden;
+}
+
+.itemsBetween {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Explore items loading */
+.itemsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.itemsWrapper::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+.itemContainer {
+    width: 170px;
+    height: 220px;
+}
+
+/* Postcards loading */
+.posctardsContainer {
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+}
+
+

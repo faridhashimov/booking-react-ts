@@ -22,7 +22,7 @@ const Header = () => {
                 </div>
             </div>
             <div className={style.mobileSearch}>
-                <SidebarSearch />
+                {/* <SidebarSearch /> */}
             </div>
         </>
     )

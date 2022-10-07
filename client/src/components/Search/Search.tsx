@@ -13,12 +13,14 @@ import {
 import { format } from 'date-fns'
 import { IDateRange, IGuests } from '../../types'
 import { SetGuests } from '../../components'
+import { useNavigate } from 'react-router-dom'
 // const { DateRange } = require('react-date-range')
 
 const Search = () => {
     const [destination, setDestination] = useState<string>('')
     const [openDate, setOpenDate] = useState(false)
     const [openGuests, setOpenGuests] = useState(false)
+    const navigate = useNavigate()
 
     const [guests, setGuests] = useState<IGuests>({
         adults: 2,
@@ -35,17 +37,27 @@ const Search = () => {
             }
         })
     }
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
 
     const [dates, setDates] = useState<IDateRange[]>([
         {
             startDate: new Date(),
-            endDate: new Date(),
+            endDate: tomorrow,
             key: 'selection',
         },
     ])
 
     const onFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
+        navigate(
+            `/hotels?city=${destination}&checkin=${format(
+                dates[0].startDate,
+                'eee, MMM d'
+            )}&checkout=${format(dates[0].endDate, 'eee, MMM d')}&adults=${
+                guests.adults
+            }&children=${guests.children}&room=${guests.room}`
+        )
     }
 
     return (
@@ -154,7 +166,9 @@ const Search = () => {
                         />
                     )}
                 </div>
-                <button type='submit' className={style.searchBtn}>Search</button>
+                <button type="submit" className={style.searchBtn}>
+                    Search
+                </button>
             </form>
         </div>
     )

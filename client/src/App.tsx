@@ -7,6 +7,7 @@ import {
     Hotels,
     Hotel,
     BookingDetails,
+    SearchByPropertyType,
 } from './pages'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Route path="hotels" element={<Hotels />} />
                 <Route path="hotels/:id" element={<Hotel />} />
                 <Route path="details" element={<BookingDetails />} />
+                <Route path="propertytype" element={<SearchByPropertyType />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Router>
