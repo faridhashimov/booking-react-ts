@@ -46,7 +46,7 @@ const getAllProperties = async (req: Request, res: Response) => {
             ...searchDistance,
             ...searchType,
         })
-        res.status(201).json(allProperties)
+        res.status(200).json(allProperties)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -56,7 +56,7 @@ const getAllProperties = async (req: Request, res: Response) => {
 const getProperty = async (req: Request, res: Response) => {
     try {
         const property = await PropertyModel.findById(req.params.propertyId)
-        res.status(201).json(property)
+        res.status(200).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -88,7 +88,7 @@ const getPropertiesByCountry = async (req: Request, res: Response) => {
                 $limit: 10,
             },
         ])
-        res.status(201).json(property)
+        res.status(200).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -116,7 +116,7 @@ const getPropertyTypes = async (req: Request, res: Response) => {
                 $limit: 10,
             },
         ])
-        res.status(201).json(property)
+        res.status(200).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -153,7 +153,7 @@ const getPropertiesByType = async (req: Request, res: Response) => {
             })
         )
         const mainResponse = property.flatMap((x) => x)
-        res.status(201).json(mainResponse)
+        res.status(200).json(mainResponse)
     } catch (error) {
         console.log(error)
         res.status(400).json(error)
@@ -182,7 +182,7 @@ const getSelectedPropertyByType = async (req: Request, res: Response) => {
             },
         ])
 
-        res.status(201).json(property)
+        res.status(200).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -216,7 +216,7 @@ const getPropertiesByCities = async (req: Request, res: Response) => {
                 ])
             })
         )
-        res.status(201).json(property)
+        res.status(200).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -234,7 +234,7 @@ const updateProperty = async (req: Request, res: Response) => {
                 new: true,
             }
         )
-        res.status(201).json(property)
+        res.status(200).json(property)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -244,7 +244,7 @@ const updateProperty = async (req: Request, res: Response) => {
 const deleteProperty = async (req: Request, res: Response) => {
     try {
         await PropertyModel.findByIdAndDelete(req.params.propertyId)
-        res.status(201).json('Property has been deleted!')
+        res.status(200).json('Property has been deleted!')
     } catch (error) {
         res.status(400).json(error)
     }
