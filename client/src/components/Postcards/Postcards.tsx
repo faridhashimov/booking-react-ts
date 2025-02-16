@@ -9,7 +9,7 @@ const Postcards = () => {
     const navigate = useNavigate()
     const { recentSearches } = useAppSelector((state) => state.recenSearches)
     const { isFetching, isError, data } = useGetPromotedCitiesPropetiesQuery(
-        'New%20York,Prague,Rome,Dubai,London'
+        'New%20York,Prague,Rome,Dubai,Boston'
     )
 
     const tomorrow = new Date()

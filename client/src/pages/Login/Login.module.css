@@ -49,17 +49,19 @@
     font-size: 14px;
     background: none;
     border: 1px solid #949494;
-    border-radius: 2px;
-    outline: none;
+    border-radius: 4px;
+    /* outline: none; */
     padding: 7px 11px;
     width: 100%;
     z-index: 5;
 }
 
 .inputContainer input:focus {
-    border-color: #0071c2;
+    /* border-color: #0071c2;
     border-width: 2px;
-    padding: 6px 10px;
+    padding: 6px 10px; */
+    outline-color: #0071c2;
+    outline-width: 2px;
 }
 
 .inputContainer {
@@ -85,10 +87,10 @@
     font-size: 16px;
     font-weight: 500;
     color: #fff;
-    background-color: #0071c2;
-    border: 1px solid #0071c2;
+    background-color: #006CE4;
+    border: 1px solid #006CE4;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: all 0.2s ease-in;
 }
 

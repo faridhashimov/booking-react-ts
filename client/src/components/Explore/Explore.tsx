@@ -16,7 +16,7 @@ const Explore = () => {
     const { recentSearches } = useAppSelector((state) => state.recenSearches)
 
     const { isFetching, isError, data } =
-        useGetPopularDestinationsByCountryQuery(country)
+        useGetPopularDestinationsByCountryQuery("Russia")
 
     useEffect(() => {
         const getGeoInfo = async () => {
@@ -60,7 +60,7 @@ const Explore = () => {
             )}
             {data && (
                 <div className={style.mainWrapper}>
-                    <h1 className={style.mainTitle}>Explore {country}</h1>
+                    <h1 className={style.mainTitle}>Explore {"Russia"}</h1>
                     <p className={style.mainDesc}>
                         These popular destinations have a lot to offer
                     </p>

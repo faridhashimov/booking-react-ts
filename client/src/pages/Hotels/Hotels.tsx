@@ -149,7 +149,7 @@ const Hotels = () => {
     }, [data])
 
     const nights = new Date(checkout).getDate() - new Date(checkin).getDate()
-    console.log(checkout, checkin)
+    // console.log(checkout, checkin)
 
     const adultsQt = Number(adults)
     const child = Number(children)
@@ -185,7 +185,7 @@ const Hotels = () => {
             : setFilterChecked((prev) => [...prev, filterValue])
     }
 
-    console.log(data)
+    // console.log(data)
 
     return (
         <>
