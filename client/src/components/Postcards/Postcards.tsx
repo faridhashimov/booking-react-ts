@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/useSelector.hook'
-import { useGetPromotedCitiesPropetiesQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { useGetPromotedCitiesPropetiesQuery } from '../../api/fredbookingapi/fredbooking.api'
 import PostcardsLoading from '../Skeletons/PostcardsLoading'
 import style from './Postcards.module.css'
 

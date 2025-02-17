@@ -1,8 +1,15 @@
 import style from './MainNavbar.module.css'
 import { Link } from 'react-router-dom'
 import { BiUserCircle } from 'react-icons/bi'
+import { FC } from 'react'
+import { useAuth } from '../../shared'
 
-const MainNavbar = () => {
+const MainNavbar: FC = () => {
+    const { isAuth, user } = useAuth()
+
+    console.log(user?.name.slice(0, 1))
+    console.log(isAuth)
+
     return (
         <div className={style.root}>
             <div className={style.container}>
@@ -11,7 +18,7 @@ const MainNavbar = () => {
                         Fredbooking.com
                     </Link>
                 </div>
-                <Link to='/register' className={style.mobileLogin}>
+                <Link to="/register" className={style.mobileLogin}>
                     <BiUserCircle className={style.loginUser} />
                 </Link>
                 <div className={style.navContainer}>
@@ -29,12 +36,36 @@ const MainNavbar = () => {
                     <button className={style.listProperty}>
                         List your property
                     </button>
-                    <Link to="/register" className={style.authBtn}>
-                        Register
-                    </Link>
-                    <Link to="/login" className={style.authBtn}>
-                        Sign in
-                    </Link>
+                    {!isAuth ? (
+                        <>
+                            <Link to="/register" className={style.authBtn}>
+                                Register
+                            </Link>
+                            <Link to="/login" className={style.authBtn}>
+                                Sign in
+                            </Link>
+                        </>
+                    ) : (
+                        <button
+                            style={{
+                                marginLeft: '10px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <div>{user?.name.slice(0, 1)}</div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <span>{`${user?.name} ${user?.surname}`}</span>
+                                <span>Genius Level 1</span>
+                            </div>
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

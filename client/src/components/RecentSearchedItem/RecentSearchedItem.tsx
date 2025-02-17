@@ -1,5 +1,5 @@
 import style from './RecentSearchedItem.module.css'
-import { RecentSearchesState } from '../../store/fredbookingapi/recentSearches.slice'
+import { RecentSearchesState } from '../../redux/slices/recentSearches.slice'
 
 const RecentSearchedItem = ({
     img,

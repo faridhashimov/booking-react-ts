@@ -1,53 +1,68 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MainNavbar } from '../../components'
-import { IRegInfo } from '../../types'
 import style from './Login.module.css'
+import { useForm } from 'react-hook-form'
+import { useLoginMutation } from '../../api'
+import { ErrorMessage } from '../../shared'
+import { loginUser } from '../../redux'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
     const [show, setShow] = useState<boolean>(false)
-    const [inputs, setInputs] = useState<Partial<IRegInfo>>({
-        name: '',
-        password: '',
-    })
-    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputs((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value,
-        }))
-    }
-    const onRegister = (e: React.FormEvent) => {
-        e.preventDefault()
-    }
+    const [login, { isLoading, isError, isSuccess, error }] = useLoginMutation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { register, handleSubmit } = useForm()
 
-    console.log(inputs)
+    useEffect(() => {
+        if (isSuccess) navigate('/', { replace: true })
+    }, [isSuccess, navigate])
+
+    console.log(isLoading)
     return (
         <div className={style.root}>
             <MainNavbar />
             <div className={style.wrapper}>
-                <form onSubmit={onRegister} className={style.registerForm}>
+                <form
+                    onSubmit={handleSubmit(async (data) => {
+                        const result = await login(data).unwrap()
+                        dispatch(loginUser(result))
+                    })}
+                    className={style.registerForm}
+                >
                     <h1>Sign in</h1>
 
                     <div className={style.inputContainer}>
                         <label htmlFor="email">Email adress</label>
                         <input
-                            onChange={onInputChange}
-                            name="email"
+                            {...register('email', {
+                                required: {
+                                    value: true,
+                                    message: 'Email is required',
+                                },
+                                pattern: {
+                                    value: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+                                    message: 'Invalid email adress',
+                                },
+                            })}
                             id="email"
                             type="email"
                             placeholder="Email adress"
-                            required
                         />
                     </div>
                     <div className={style.inputContainer}>
                         <label htmlFor="password">Password</label>
                         <input
-                            onChange={onInputChange}
-                            name="password"
+                            {...register('password', {
+                                required: {
+                                    value: true,
+                                    message: 'Password is required',
+                                },
+                            })}
                             id="password"
                             type={show ? 'text' : 'password'}
-                            required
                         />
                         <div
                             onClick={() => setShow(!show)}
@@ -56,12 +71,19 @@ const Login = () => {
                             {show ? <FaEye /> : <FaEyeSlash />}
                         </div>
                     </div>
+                    {isError && (
+                        <ErrorMessage
+                            message={JSON.stringify(
+                                error && 'data' in error && error.data
+                            )}
+                        />
+                    )}
                     <button type="submit" className={style.submitBtn}>
                         Sign in
                     </button>
                     <div className={style.redirect}>
                         <Link to="/register">
-                           Do not have an account yet ? Register
+                            Do not have an account yet ? Register
                         </Link>
                     </div>
                 </form>

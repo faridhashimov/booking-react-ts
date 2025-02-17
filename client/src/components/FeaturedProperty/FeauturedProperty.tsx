@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useGetFeauturedPropertyDestinationsQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { useGetFeauturedPropertyDestinationsQuery } from '../../api/fredbookingapi/fredbooking.api'
 import ExploreItemsLoading from '../Skeletons/ExploreItemsLoading'
 import Slider from '../Slider/Slider'
 import style from './FeauturedProperty.module.css'

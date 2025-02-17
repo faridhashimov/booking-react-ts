@@ -4,77 +4,101 @@ import { Link } from 'react-router-dom'
 import { MainNavbar } from '../../components'
 import { IRegInfo } from '../../types'
 import style from './Register.module.css'
-
+import { useForm } from 'react-hook-form'
+import { ErrorMessage } from '../../shared'
+import { useRegisterMutation } from '../../api/fredbookingapi/fredbooking.api'
 
 const Regsiter = () => {
     const [show, setShow] = useState<boolean>(false)
-    const [inputs, setInputs] = useState<Partial<IRegInfo>>({
-        name: '',
-        surname: '',
-        email: '',
-        password: '',
-    })
-    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputs((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value,
-        }))
-    }
-    const onRegister = (e: React.FormEvent) => {
-        e.preventDefault()
-    }
+    const [register, { isLoading, isError, isSuccess }] = useRegisterMutation()
 
-    console.log(inputs)
+    const {
+        register: registerUser,
+        handleSubmit,
+        formState: { errors, disabled },
+    } = useForm<IRegInfo>()
+
+    console.log('isLoading', isLoading)
 
     return (
         <div className={style.root}>
             <MainNavbar />
             <div className={style.wrapper}>
-                <form onSubmit={onRegister} className={style.registerForm}>
+                <form
+                    onSubmit={handleSubmit((data) => {
+                        console.log(data)
+                        register(data)
+                    })}
+                    className={style.registerForm}
+                >
                     <h1>Create an account</h1>
                     <div className={style.inputContainer}>
                         <label htmlFor="name">Name</label>
                         <input
-                            onChange={onInputChange}
-                            name="name"
+                            {...registerUser('name', {
+                                required: {
+                                    value: true,
+                                    message: 'Name is required',
+                                },
+                            })}
                             id="name"
                             type="text"
                             placeholder="Name"
                             autoComplete="off"
-                            required
                         />
                     </div>
+                    <ErrorMessage message={errors.name?.message} />
                     <div className={style.inputContainer}>
                         <label htmlFor="surname">Surname</label>
                         <input
-                            onChange={onInputChange}
-                            name="surname"
+                            {...registerUser('surname', {
+                                required: {
+                                    value: true,
+                                    message: 'Surname is required',
+                                },
+                            })}
                             id="surname"
                             type="text"
                             placeholder="Surname"
                             autoComplete="off"
-                            required
                         />
                     </div>
+                    <ErrorMessage message={errors.surname?.message} />
                     <div className={style.inputContainer}>
                         <label htmlFor="email">Email adress</label>
                         <input
-                            onChange={onInputChange}
-                            name="email"
+                            {...registerUser('email', {
+                                required: {
+                                    value: true,
+                                    message: 'Email is required',
+                                },
+                                pattern: {
+                                    value: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+                                    message: 'Invalid email adress',
+                                },
+                            })}
                             id="email"
                             type="email"
                             placeholder="Email adress"
-                            required
                         />
                     </div>
+                    <ErrorMessage message={errors.email?.message} />
                     <div className={style.inputContainer}>
                         <label htmlFor="password">Password</label>
                         <input
-                            onChange={onInputChange}
-                            name="password"
+                            {...registerUser('password', {
+                                required: {
+                                    value: true,
+                                    message: 'Password is required',
+                                },
+                                pattern: {
+                                    value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                                    message:
+                                        'Password must be at least 8 characters long and include at least one letter, one number, and one special character',
+                                },
+                            })}
                             id="password"
                             type={show ? 'text' : 'password'}
-                            required
                         />
                         <div
                             onClick={() => setShow(!show)}
@@ -83,7 +107,12 @@ const Regsiter = () => {
                             {show ? <FaEye /> : <FaEyeSlash />}
                         </div>
                     </div>
-                    <button type="submit" className={style.submitBtn}>
+                    <ErrorMessage message={errors.password?.message} />
+                    <button
+                        disabled={disabled}
+                        type="submit"
+                        className={style.submitBtn}
+                    >
                         Register
                     </button>
                     <div className={style.redirect}>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Slider } from '../../components'
 import { useAppSelector } from '../../hooks/useSelector.hook'
-import { useGetPopularDestinationsByCountryQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { useGetPopularDestinationsByCountryQuery } from '../../api/fredbookingapi/fredbooking.api'
 import ExploreItemsLoading from '../Skeletons/ExploreItemsLoading'
 import style from './Explore.module.css'
 
@@ -16,7 +16,9 @@ const Explore = () => {
     const { recentSearches } = useAppSelector((state) => state.recenSearches)
 
     const { isFetching, isError, data } =
-        useGetPopularDestinationsByCountryQuery("Russia")
+        useGetPopularDestinationsByCountryQuery('Russia')
+
+    console.log(country)
 
     useEffect(() => {
         const getGeoInfo = async () => {
@@ -60,7 +62,7 @@ const Explore = () => {
             )}
             {data && (
                 <div className={style.mainWrapper}>
-                    <h1 className={style.mainTitle}>Explore {"Russia"}</h1>
+                    <h1 className={style.mainTitle}>Explore {'Russia'}</h1>
                     <p className={style.mainDesc}>
                         These popular destinations have a lot to offer
                     </p>

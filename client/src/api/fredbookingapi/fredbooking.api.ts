@@ -5,11 +5,14 @@ import {
     IHotels,
     IPopularDestinationsByCountry,
     SelectedType,
-} from '../../models/models'
+} from '../models'
 
 export const fredbookingApi = createApi({
     reducerPath: 'fredbookingApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5500/api/' }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'http://localhost:5500/api/',
+        credentials: 'include',
+    }),
     endpoints: (builder) => ({
         getPopularDestinationsByCountry: builder.query<
             IPopularDestinationsByCountry[],
@@ -53,6 +56,20 @@ export const fredbookingApi = createApi({
                 url: `property${query}`,
             }),
         }),
+        login: builder.mutation({
+            query: (body) => ({
+                url: 'auth/login',
+                method: 'POST',
+                body,
+            }),
+        }),
+        register: builder.mutation({
+            query: (body) => ({
+                url: 'auth/register',
+                method: 'POST',
+                body,
+            }),
+        }),
     }),
 })
 
@@ -63,4 +80,6 @@ export const {
     useGetPropertiesQuery,
     useGetFeauturedPropertyDestinationsQuery,
     useGetSelectedTypePropertiesQuery,
+    useRegisterMutation,
+    useLoginMutation,
 } = fredbookingApi

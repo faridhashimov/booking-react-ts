@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useGetPropetiesByTypeQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { useGetPropetiesByTypeQuery } from '../../api/fredbookingapi/fredbooking.api'
 import BrowseByPropertyLoading from '../Skeletons/BrowseByPropertyLoading'
 import Slider from '../Slider/Slider'
 import style from './BrowseProperty.module.css'

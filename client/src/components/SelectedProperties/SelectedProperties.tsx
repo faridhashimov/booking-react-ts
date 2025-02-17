@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Slider } from '..'
-import { useGetSelectedTypePropertiesQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { useGetSelectedTypePropertiesQuery } from '../../api/fredbookingapi/fredbooking.api'
 import style from './SelectedProperties.module.css'
 
 const SelectedProperties = ({
@@ -20,7 +20,7 @@ const SelectedProperties = ({
         city: city,
     }
 
-    const type: string = 'perfect'
+    // const type: string = 'perfect'
 
     const { isFetching, isError, data } =
         useGetSelectedTypePropertiesQuery(query)
@@ -131,11 +131,12 @@ const SelectedProperties = ({
                                                             {(
                                                                 reviews.reduce(
                                                                     (
-                                                                        prev,
-                                                                        acc
+                                                                        prev: number,
+                                                                        acc: number
                                                                     ) =>
                                                                         prev +
-                                                                        acc
+                                                                        acc,
+                                                                    0
                                                                 ) /
                                                                 reviews.length
                                                             ).toFixed(1)}
@@ -146,8 +147,11 @@ const SelectedProperties = ({
                                                     >
                                                         {getRate(
                                                             reviews.reduce(
-                                                                (prev, acc) =>
-                                                                    prev + acc
+                                                                (
+                                                                    prev: number,
+                                                                    acc: number
+                                                                ) => prev + acc,
+                                                                0
                                                             ) / reviews.length
                                                         )}
                                                     </span>

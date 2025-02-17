@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import {
     BrowseProperty,
     Explore,
@@ -8,7 +9,7 @@ import {
     Subscribe,
 } from '../../components'
 
-const Homepage = () => {
+const Homepage: FC = () => {
     return (
         <>
             <Header />

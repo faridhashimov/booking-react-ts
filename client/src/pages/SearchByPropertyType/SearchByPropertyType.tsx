@@ -10,7 +10,7 @@ import {
 } from '../../components'
 import FeauturedProperty from '../../components/FeaturedProperty/FeauturedProperty'
 import { useAppSelector } from '../../hooks/useSelector.hook'
-import { RecentSearchesState } from '../../store/fredbookingapi/recentSearches.slice'
+import { RecentSearchesState } from '../../redux/slices/recentSearches.slice'
 import style from './SearchByPropertyType.module.css'
 
 const SearchByPropertyType = () => {

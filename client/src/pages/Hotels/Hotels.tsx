@@ -9,12 +9,11 @@ import { FiCheckSquare, FiChevronRight, FiSquare } from 'react-icons/fi'
 import style from './Hotels.module.css'
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useGetPropertiesQuery } from '../../store/fredbookingapi/fredbooking.api'
+import { useGetPropertiesQuery } from '../../api/fredbookingapi/fredbooking.api'
 import { IQueryString } from '../../components/SidebarSearch/SidebarSearch'
 import qs from 'qs'
 import { useAppDispatch } from '../../hooks/useAppDispatch.hook'
 import { v4 as uuidv4 } from 'uuid'
-import { IHotels } from '../../models/models'
 
 const Hotels = () => {
     const [wishlist, setWishlist] = useState<string[]>([])
@@ -26,7 +25,7 @@ const Hotels = () => {
     const { city, checkin, checkout, children, adults, room, star, distance } =
         qs.parse(location.search.substring(1)) as unknown as IQueryString
 
-    const { isFetching, isError, data } = useGetPropertiesQuery(
+    const { data } = useGetPropertiesQuery(
         // &checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&room=${room}
         `?city=${city}&star=${star ? star : '1'}&distance=${
             distance ? distance : '1'

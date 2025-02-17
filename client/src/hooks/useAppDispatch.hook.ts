@@ -1,6 +1,6 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { recentSerachesActions } from '../store/fredbookingapi/recentSearches.slice'
+import { recentSerachesActions } from '../redux/slices/recentSearches.slice'
 
 const actions = {
     ...recentSerachesActions,

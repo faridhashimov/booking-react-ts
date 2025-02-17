@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .inputContainer label {
@@ -87,11 +87,12 @@
     font-size: 16px;
     font-weight: 500;
     color: #fff;
-    background-color: #006CE4;
-    border: 1px solid #006CE4;
+    background-color: #006ce4;
+    border: 1px solid #006ce4;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.2s ease-in;
+    margin-top: 20px;
 }
 
 .submitBtn:hover {

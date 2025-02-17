@@ -18,8 +18,8 @@ const userRegister = async (req: Request, res: Response) => {
         })
         res.status(201).json(newUser)
     } catch (error) {
-        res.status(404).json('Something went wrong, please check filled fields')
         console.log(error)
+        res.status(500).json({ message: 'Internal Server Error' })
     }
 }
 
@@ -35,7 +35,7 @@ const userLogin = async (req: Request, res: Response) => {
             user.password
         )
 
-        if (!originalPassword) return res.status(201).json('Wrong password')
+        if (!originalPassword) return res.status(404).json('Wrong password')
 
         const accessToken = jwt.sign(
             {
@@ -48,18 +48,18 @@ const userLogin = async (req: Request, res: Response) => {
             }
         )
 
-        const { password, ...others } = user._doc
+        const { password, name, surname, email } = user._doc
 
         res.cookie('access_token', accessToken, {
             httpOnly: true,
+            secure: true,
+            sameSite: 'none',
         })
             .status(201)
-            .json({ ...others, accessToken })
+            .json({ name, surname, email })
     } catch (error) {
-        res.status(404).json(
-            'Something went wrong, please check email and password'
-        )
         console.log(error)
+        res.status(500).json({ message: 'Internal Server Error' })
     }
 }
 
