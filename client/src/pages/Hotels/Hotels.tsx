@@ -7,7 +7,7 @@ import {
 } from '../../components'
 import { FiCheckSquare, FiChevronRight, FiSquare } from 'react-icons/fi'
 import style from './Hotels.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useGetPropertiesQuery } from '../../api/fredbookingapi/fredbooking.api'
 import { IQueryString } from '../../components/SidebarSearch/SidebarSearch'
@@ -15,7 +15,7 @@ import qs from 'qs'
 import { v4 as uuidv4 } from 'uuid'
 import { useAppDispatch } from 'store/hooks/useAppDispatch.hook'
 
-const Hotels = () => {
+export const Hotels: FC = () => {
     const [wishlist, setWishlist] = useState<string[]>([])
     const [showFilters, setShowFilters] = useState<boolean>(false)
     const [filterChecked, setFilterChecked] = useState<string[]>([])
@@ -646,5 +646,3 @@ const Hotels = () => {
         </>
     )
 }
-
-export default Hotels

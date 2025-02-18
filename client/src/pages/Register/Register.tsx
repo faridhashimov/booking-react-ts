@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { MainNavbar } from '../../components'
 import { IRegInfo } from '../../types'
-import style from './Register.module.css'
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '../../shared'
 import { useRegisterMutation } from '../../api/fredbookingapi/fredbooking.api'
+import style from './Register.module.css'
 
-const Regsiter = () => {
+export const Register: FC = () => {
     const [show, setShow] = useState<boolean>(false)
     let navigate = useNavigate()
     const [register, { isLoading, isError, isSuccess, error }] =
@@ -150,5 +150,3 @@ const Regsiter = () => {
         </div>
     )
 }
-
-export default Regsiter

@@ -1,7 +1,8 @@
+import { FC } from 'react'
 import { MainNavbar } from '../../components'
 import style from './BookingDetails.module.css'
 
-const BookingDetails = () => {
+export const BookingDetails: FC = () => {
     return (
         <>
             <MainNavbar />
@@ -329,7 +330,7 @@ const BookingDetails = () => {
                                 </div>
 
                                 <div className={style.submitInfo}>
-                                    <a href='/'>
+                                    <a href="/">
                                         Next: Final details
                                         <svg
                                             height="24"
@@ -351,12 +352,11 @@ const BookingDetails = () => {
             <div className={style.footer}>
                 <div>
                     <p>
-                        Copyright © 1996–2022 Fredbooking.com. All rights reserved.
+                        Copyright © 1996–2022 Fredbooking.com. All rights
+                        reserved.
                     </p>
                 </div>
             </div>
         </>
     )
 }
-
-export default BookingDetails

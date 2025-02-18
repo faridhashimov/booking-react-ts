@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import {
     Availibility,
     Faq,
@@ -36,7 +37,7 @@ according to independent reviews. Couples in
 particular like the location – they rated it 9.3
 for a two-person trip.`
 
-const Hotel = () => {
+export const Hotel: FC = () => {
     return (
         <>
             <MainNavbar />
@@ -177,5 +178,3 @@ const Hotel = () => {
         </>
     )
 }
-
-export default Hotel

@@ -1,7 +1,8 @@
+import { FC } from 'react'
 import { MainNavbar, Navbar } from '../../components'
 // import style from './ErrorPage.module.css'
 
-const ErrorPage = () => {
+export const ErrorPage: FC = () => {
     return (
         <>
             <MainNavbar />
@@ -15,5 +16,3 @@ const ErrorPage = () => {
         </>
     )
 }
-
-export default ErrorPage

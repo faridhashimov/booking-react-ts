@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import {
     Footer,
@@ -13,7 +13,7 @@ import style from './SearchByPropertyType.module.css'
 import { useAppSelector } from 'store/hooks/useSelector.hook'
 import { RecentSearchesState } from 'store'
 
-const SearchByPropertyType = () => {
+export const SearchByPropertyType: FC = () => {
     const location = useLocation()
     const [recentDestinations, setRecentDestinations] = useState<
         RecentSearchesState[]
@@ -166,5 +166,3 @@ const SearchByPropertyType = () => {
         </>
     )
 }
-
-export default SearchByPropertyType

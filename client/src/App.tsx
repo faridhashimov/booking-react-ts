@@ -8,6 +8,7 @@ import {
     Hotel,
     BookingDetails,
     SearchByPropertyType,
+    Chat,
 } from './pages'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 <Route path="hotels" element={<Hotels />} />
                 <Route path="hotels/:id" element={<Hotel />} />
                 <Route path="details" element={<BookingDetails />} />
+                <Route path="chat" element={<Chat />} />
                 <Route path="propertytype" element={<SearchByPropertyType />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { MainNavbar } from '../../components'
@@ -9,7 +9,7 @@ import { ErrorMessage } from '../../shared'
 import { useDispatch } from 'react-redux'
 import { loginUser } from 'store'
 
-const Login = () => {
+export const Login: FC = () => {
     const [show, setShow] = useState<boolean>(false)
     const [login, { isLoading, isError, isSuccess, error }] = useLoginMutation()
     const navigate = useNavigate()
@@ -101,5 +101,3 @@ const Login = () => {
         </div>
     )
 }
-
-export default Login

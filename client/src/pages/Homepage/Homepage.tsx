@@ -9,7 +9,7 @@ import {
     Subscribe,
 } from '../../components'
 
-const Homepage: FC = () => {
+export const Homepage: FC = () => {
     return (
         <>
             <Header />
@@ -22,5 +22,3 @@ const Homepage: FC = () => {
         </>
     )
 }
-
-export default Homepage
