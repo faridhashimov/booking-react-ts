@@ -1,14 +1,13 @@
 import style from './MainNavbar.module.css'
 import { Link } from 'react-router-dom'
 import { BiUserCircle } from 'react-icons/bi'
-import { FC } from 'react'
-import { useAuth } from '../../shared'
+import { FC, useState } from 'react'
+import { Portal, useAuth } from '../../shared'
+import { ModalContainer, ProfileButton } from './components'
 
 const MainNavbar: FC = () => {
+    const [showModal, setShowModal] = useState<boolean>(false)
     const { isAuth, user } = useAuth()
-
-    console.log(user?.name.slice(0, 1))
-    console.log(isAuth)
 
     return (
         <div className={style.root}>
@@ -33,9 +32,7 @@ const MainNavbar: FC = () => {
                         />
                     </div>
 
-                    <button className={style.listProperty}>
-                        List your property
-                    </button>
+                    <div className={style.listProperty}>List your property</div>
                     {!isAuth ? (
                         <>
                             <Link to="/register" className={style.authBtn}>
@@ -46,25 +43,19 @@ const MainNavbar: FC = () => {
                             </Link>
                         </>
                     ) : (
-                        <button
-                            style={{
-                                marginLeft: '10px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <div>{user?.name.slice(0, 1)}</div>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
+                        <>
+                            <ProfileButton
+                                setShowModal={setShowModal}
+                                showModal={showModal}
+                                user={user}
+                            />
+                            <Portal
+                                setShowModal={setShowModal}
+                                showModal={showModal}
                             >
-                                <span>{`${user?.name} ${user?.surname}`}</span>
-                                <span>Genius Level 1</span>
-                            </div>
-                        </button>
+                                <ModalContainer />
+                            </Portal>
+                        </>
                     )}
                 </div>
             </div>

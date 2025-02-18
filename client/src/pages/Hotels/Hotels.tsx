@@ -12,8 +12,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useGetPropertiesQuery } from '../../api/fredbookingapi/fredbooking.api'
 import { IQueryString } from '../../components/SidebarSearch/SidebarSearch'
 import qs from 'qs'
-import { useAppDispatch } from '../../hooks/useAppDispatch.hook'
 import { v4 as uuidv4 } from 'uuid'
+import { useAppDispatch } from 'store/hooks/useAppDispatch.hook'
 
 const Hotels = () => {
     const [wishlist, setWishlist] = useState<string[]>([])

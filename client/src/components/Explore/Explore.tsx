@@ -3,10 +3,10 @@ import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Slider } from '../../components'
-import { useAppSelector } from '../../hooks/useSelector.hook'
 import { useGetPopularDestinationsByCountryQuery } from '../../api/fredbookingapi/fredbooking.api'
 import ExploreItemsLoading from '../Skeletons/ExploreItemsLoading'
 import style from './Explore.module.css'
+import { useAppSelector } from 'store/hooks/useSelector.hook'
 
 const Explore = () => {
     const [index, setIndex] = useState<number>(0)

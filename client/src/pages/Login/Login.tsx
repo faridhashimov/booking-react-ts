@@ -6,8 +6,8 @@ import style from './Login.module.css'
 import { useForm } from 'react-hook-form'
 import { useLoginMutation } from '../../api'
 import { ErrorMessage } from '../../shared'
-import { loginUser } from '../../redux'
 import { useDispatch } from 'react-redux'
+import { loginUser } from 'store'
 
 const Login = () => {
     const [show, setShow] = useState<boolean>(false)

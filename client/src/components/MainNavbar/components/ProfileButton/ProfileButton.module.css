@@ -1,0 +1,43 @@
+.profileButton {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.profileButton:hover {
+    background-color: #1f4e8f;
+    transition: all 0.2sease-in;
+}
+
+.profileUserLetter {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffb700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.profileUserInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileUserName {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.profileUserLevel {
+    font-size: 12px;
+    font-weight: 400;
+    color: #febb02;
+}

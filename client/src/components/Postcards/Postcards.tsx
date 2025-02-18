@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../hooks/useSelector.hook'
 import { useGetPromotedCitiesPropetiesQuery } from '../../api/fredbookingapi/fredbooking.api'
 import PostcardsLoading from '../Skeletons/PostcardsLoading'
 import style from './Postcards.module.css'
+import { useAppSelector } from 'store/hooks/useSelector.hook'
 
 const Postcards = () => {
     const navigate = useNavigate()

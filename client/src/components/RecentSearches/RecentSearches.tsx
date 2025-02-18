@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useAppSelector } from '../../hooks/useSelector.hook'
 // import { data } from '../../data'
 import RecentSearchedItem from '../RecentSearchedItem/RecentSearchedItem'
 import Slider from '../Slider/Slider'
 import style from './RecentSearches.module.css'
+import { useAppSelector } from 'store/hooks/useSelector.hook'
 
 const RecentSearches = () => {
     const [index, setIndex] = useState<number>(0)

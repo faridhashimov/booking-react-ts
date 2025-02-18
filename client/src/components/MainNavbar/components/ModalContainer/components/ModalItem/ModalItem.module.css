@@ -1,0 +1,39 @@
+.profileModalItem {
+    padding: 12px 16px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.profileModalItem:hover {
+    background-color: #1a1a1a0f;
+}
+
+.profileModalItemLink {
+    text-decoration: none;
+}
+
+.profileModalItemContainer {
+    display: flex;
+    align-items: start;
+    gap: 4px;
+    width: 100%;
+    color: #1a1a1a;
+}
+
+.profileModalItemIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileModalItemTextContainer {
+    flex-shrink: 1;
+    flex-basis: 100%;
+    flex-grow: 1;
+    display: flex;
+}
+
+.profileModalItemText {
+    font-size: 14px;
+    font-weight: 400;
+}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MainNavbar } from '../../components'
 import { IRegInfo } from '../../types'
 import style from './Register.module.css'
@@ -10,7 +10,9 @@ import { useRegisterMutation } from '../../api/fredbookingapi/fredbooking.api'
 
 const Regsiter = () => {
     const [show, setShow] = useState<boolean>(false)
-    const [register, { isLoading, isError, isSuccess }] = useRegisterMutation()
+    let navigate = useNavigate()
+    const [register, { isLoading, isError, isSuccess, error }] =
+        useRegisterMutation()
 
     const {
         register: registerUser,
@@ -18,16 +20,21 @@ const Regsiter = () => {
         formState: { errors, disabled },
     } = useForm<IRegInfo>()
 
-    console.log('isLoading', isLoading)
+    useEffect(() => {
+        if (isSuccess) {
+            navigate('/login', { replace: true })
+        }
+    }, [isSuccess, navigate])
+
+    console.log(isLoading)
 
     return (
         <div className={style.root}>
             <MainNavbar />
             <div className={style.wrapper}>
                 <form
-                    onSubmit={handleSubmit((data) => {
-                        console.log(data)
-                        register(data)
+                    onSubmit={handleSubmit(async (data) => {
+                        await register(data).unwrap()
                     })}
                     className={style.registerForm}
                 >
@@ -108,6 +115,14 @@ const Regsiter = () => {
                         </div>
                     </div>
                     <ErrorMessage message={errors.password?.message} />
+
+                    {isError && (
+                        <ErrorMessage
+                            message={JSON.stringify(
+                                error && 'data' in error && error.data
+                            )}
+                        />
+                    )}
                     <button
                         disabled={disabled}
                         type="submit"

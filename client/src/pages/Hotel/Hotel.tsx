@@ -8,7 +8,7 @@ import {
     Navbar,
     Questions,
     Reviews,
-    SidebarSearch,
+    // SidebarSearch,
     Subscribe,
 } from '../../components'
 import { ImLocation } from 'react-icons/im'

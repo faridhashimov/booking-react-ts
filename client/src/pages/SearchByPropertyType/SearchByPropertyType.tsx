@@ -9,9 +9,9 @@ import {
     Subscribe,
 } from '../../components'
 import FeauturedProperty from '../../components/FeaturedProperty/FeauturedProperty'
-import { useAppSelector } from '../../hooks/useSelector.hook'
-import { RecentSearchesState } from '../../redux/slices/recentSearches.slice'
 import style from './SearchByPropertyType.module.css'
+import { useAppSelector } from 'store/hooks/useSelector.hook'
+import { RecentSearchesState } from 'store'
 
 const SearchByPropertyType = () => {
     const location = useLocation()

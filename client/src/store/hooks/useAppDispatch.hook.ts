@@ -1,6 +1,6 @@
-import { bindActionCreators } from '@reduxjs/toolkit'
+import { bindActionCreators } from 'redux'
 import { useDispatch } from 'react-redux'
-import { recentSerachesActions } from '../redux/slices/recentSearches.slice'
+import { recentSerachesActions } from '../slices/recentSearches.slice'
 
 const actions = {
     ...recentSerachesActions,

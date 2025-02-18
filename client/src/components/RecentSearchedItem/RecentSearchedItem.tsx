@@ -1,5 +1,5 @@
+import { RecentSearchesState } from 'store'
 import style from './RecentSearchedItem.module.css'
-import { RecentSearchesState } from '../../redux/slices/recentSearches.slice'
 
 const RecentSearchedItem = ({
     img,

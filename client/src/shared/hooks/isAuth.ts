@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hooks/useSelector.hook'
+import { useAppSelector } from 'store/hooks/useSelector.hook'
 
 export const useAuth = () => {
     const auth = useAppSelector((state) => state.auth.auth)

@@ -1,5 +1,5 @@
-import style from './ErrorPage.module.css'
 import { MainNavbar, Navbar } from '../../components'
+// import style from './ErrorPage.module.css'
 
 const ErrorPage = () => {
     return (

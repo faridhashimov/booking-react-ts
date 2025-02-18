@@ -1,7 +1,8 @@
-import { MainNavbar, Navbar, Search, SidebarSearch } from '../../components'
+import { FC } from 'react'
+import { MainNavbar, Navbar, Search } from '../../components'
 import style from './Header.module.css'
 
-const Header = () => {
+const Header: FC = () => {
     return (
         <>
             <div className={style.root}>
@@ -21,9 +22,7 @@ const Header = () => {
                     <Search />
                 </div>
             </div>
-            <div className={style.mobileSearch}>
-                {/* <SidebarSearch /> */}
-            </div>
+            <div className={style.mobileSearch}>{/* <SidebarSearch /> */}</div>
         </>
     )
 }

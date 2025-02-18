@@ -1,0 +1,18 @@
+.profileModalContainer {
+    height: 328px;
+    overflow: hidden;
+    width: 230px;
+    position: absolute;
+    top: 70px;
+    right: 320px;
+    z-index: 100000;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 4px 0px;
+}
+
+@media (max-width: 1660px) {
+    .profileModalContainer {
+        right: 280px;
+    }
+}
