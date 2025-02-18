@@ -1,6 +1,6 @@
 // import { ReactNode } from 'react'
 import { render, screen } from '@testing-library/react'
-import { RouterWrapper } from '../../utils/RouterWrapper'
+import { RouterWrapper } from '../../shared/utils/RouterWrapper'
 import MainNavbar from './MainNavbar'
 
 describe('My function or component', () => {
